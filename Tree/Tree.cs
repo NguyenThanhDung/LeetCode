@@ -1,3 +1,5 @@
+using System.Collections;
+
 public class Tree
 {
     private TreeNode root;
@@ -7,33 +9,46 @@ public class Tree
         root = null;
     }
 
-    public void Insert(int value)
+    public void Insert(Queue<Object> values)
     {
+        if (values == null || values.Count == 0)
+            return;
+
         if (root == null)
         {
-            root = new TreeNode(value);
+            Object value = values.Dequeue();
+            if (value != null)
+                root = new TreeNode((int)value);
+            else
+                return;
         }
-        else
-        {
-            InsertRec(root, new TreeNode(value));
-        }
-    }
 
-    public void InsertRec(TreeNode root, TreeNode newNode)
-    {
-        if (newNode.val < root.val)
+        Queue<TreeNode> queue = new Queue<TreeNode>();
+        queue.Enqueue(root);
+
+        while (queue.Count > 0)
         {
-            if (root.left == null)
-                root.left = newNode;
-            else
-                InsertRec(root.left, newNode);
-        }
-        else
-        {
-            if (root.right == null)
-                root.right = newNode;
-            else
-                InsertRec(root.right, newNode);
+            TreeNode node = queue.Dequeue();
+
+            if (values.Count > 0 && node.left == null)
+            {
+                Object value = values.Dequeue();
+                if (value != null)
+                {
+                    node.left = new TreeNode((int)value);
+                    queue.Enqueue(node.left);
+                }
+            }
+
+            if (values.Count > 0 && node.right == null)
+            {
+                Object value = values.Dequeue();
+                if (value != null)
+                {
+                    node.right = new TreeNode((int)value);
+                    queue.Enqueue(node.right);
+                }
+            }
         }
     }
 }

@@ -1,11 +1,20 @@
+using System.Collections;
+
 public class Problem104
 {
     public Problem104()
     {
-        int[] vals = new int[]{1, 2, 3, 4, 5, 6, 7, 8};
+        Queue<Object> vals = new Queue<Object>();
+        vals.Enqueue(3);
+        vals.Enqueue(9);
+        vals.Enqueue(20);
+        vals.Enqueue(null);
+        vals.Enqueue(null);
+        vals.Enqueue(15);
+        vals.Enqueue(7);
+
         Tree tree = new Tree();
-        foreach(int val in vals)
-            tree.Insert(val);
+        tree.Insert(vals);
         Console.WriteLine("Done.");
     }
 }
