@@ -28,14 +28,33 @@ public class Problem211
 
         public bool Search(string word)
         {
-            if(word.Contains("."))
+            if (word.Contains("."))
             {
+                foreach (string addedWord in this.words)
+                {
+                    if(CompareWords(addedWord, word))
+                        return true;
+                }
                 return false;
             }
             else
             {
                 return this.words.Contains(word);
             }
+        }
+
+        public bool CompareWords(string word1, string word2)
+        {
+            if (word1.Length != word2.Length)
+                return false;
+            for (int i = 0; i < word1.Length; i++)
+            {
+                if(word2[i].Equals('.'))
+                    continue;
+                if(!word1[i].Equals(word2[i]))
+                    return false;
+            }
+            return true;
         }
     }
 }
