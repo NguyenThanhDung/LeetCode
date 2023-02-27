@@ -19,6 +19,11 @@ public class Problem104
 
         vals.Clear();
         tree.Clear();
-        Console.WriteLine();
+        
+        vals.Enqueue(1);
+        vals.Enqueue(null);
+        vals.Enqueue(2);
+        tree.Insert(vals);
+        Console.WriteLine(tree.MaxDepth() == 2);
     }
 }
