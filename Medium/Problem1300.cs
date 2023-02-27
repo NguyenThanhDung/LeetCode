@@ -1,3 +1,5 @@
+using System.IO;
+
 public class Problem1300
 {
     public Problem1300()
@@ -5,7 +7,48 @@ public class Problem1300
         Console.WriteLine(FindBestValue(new int[] { 4, 9, 3 }, 10) == 3);
         Console.WriteLine(FindBestValue(new int[] { 2, 3, 5 }, 10) == 5);
         Console.WriteLine(FindBestValue(new int[] { 60864, 25176, 27249, 21296, 20204 }, 56803) == 11361);
+
+        Input input = new Input("Medium", "Input1300.txt");
+        DateTime start = DateTime.Now;
+        Console.WriteLine(FindBestValue(input.arr, input.target));
+        Console.WriteLine(DateTime.Now - start);
     }
+
+    private class Input
+    {
+        public int[] arr;
+        public int target;
+
+        public Input(string level, string filename)
+        {
+            string path = Path.Join(Directory.GetCurrentDirectory(), level, filename);
+            string[] lines = File.ReadAllLines(path);
+
+            string[] arrStr = lines[0].Replace("[", "").Replace("]", "").Split(",");
+            arr = new int[arrStr.Length];
+            for (int i = 0; i < arrStr.Length; i++)
+            {
+                try
+                {
+                    arr[i] = Int32.Parse(arrStr[i]);
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Unable to parse " + arrStr[i]);
+                }
+            }
+
+            try
+            {
+                this.target = Int32.Parse(lines[1]);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Unable to parse " + lines[1]);
+            }
+        }
+    }
+
 
     private int Max(int[] arr)
     {
