@@ -16,5 +16,9 @@ public class Problem104
         Tree tree = new Tree();
         tree.Insert(vals);
         Console.WriteLine(tree.MaxDepth() == 3);
+
+        vals.Clear();
+        tree.Clear();
+        Console.WriteLine();
     }
 }

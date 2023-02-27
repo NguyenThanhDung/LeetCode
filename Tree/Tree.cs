@@ -59,10 +59,28 @@ public class Tree
 
     private int GetDepthRecursively(TreeNode node, int currentDepth)
     {
-        if(node == null)
+        if (node == null)
             return currentDepth;
         int leftDepth = GetDepthRecursively(node.left, currentDepth + 1);
         int rightDepth = GetDepthRecursively(node.right, currentDepth + 1);
         return leftDepth > rightDepth ? leftDepth : rightDepth;
+    }
+
+    public void Clear()
+    {
+        ClearRecursively(this.root);
+        this.root = null;
+    }
+
+    private void ClearRecursively(TreeNode node)
+    {
+        if (node == null)
+            return;
+        if (node.left != null && (node.left.left != null || node.left.right != null))
+            ClearRecursively(node.left);
+        if (node.right != null && (node.right.left != null || node.right.right != null))
+            ClearRecursively(node.right);
+        node.left = null;
+        node.right = null;
     }
 }
