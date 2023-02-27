@@ -51,4 +51,18 @@ public class Tree
             }
         }
     }
+
+    public int MaxDepth()
+    {
+        return GetDepthRecursively(this.root, 0);
+    }
+
+    private int GetDepthRecursively(TreeNode node, int currentDepth)
+    {
+        if(node == null)
+            return currentDepth;
+        int leftDepth = GetDepthRecursively(node.left, currentDepth + 1);
+        int rightDepth = GetDepthRecursively(node.right, currentDepth + 1);
+        return leftDepth > rightDepth ? leftDepth : rightDepth;
+    }
 }
