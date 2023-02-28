@@ -5,3 +5,4 @@ new Problem211();
 new Problem745();
 new Problem989();
 new Problem1300();
+new Problem1379();

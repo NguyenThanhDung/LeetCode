@@ -83,4 +83,23 @@ public class Tree
         node.left = null;
         node.right = null;
     }
+
+    public TreeNode Find(int value)
+    {
+        return FindRecursively(this.root, value);
+    }
+
+    private TreeNode FindRecursively(TreeNode node, int value)
+    {
+        if (node == null)
+            return null;
+        if (node.val == value)
+            return node;
+
+        TreeNode foundNode = FindRecursively(node.left, value);
+        if (foundNode == null)
+            foundNode = FindRecursively(node.right, value);
+
+        return foundNode;
+    }
 }
