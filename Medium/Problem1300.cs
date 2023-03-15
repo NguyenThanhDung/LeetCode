@@ -78,11 +78,11 @@ public class Problem1300
         }
     }
 
-    private class Diff
+    private class Differ
     {
         private int[,] diffs;
 
-        public Diff()
+        public Differ()
         {
             diffs = new int[2, 2];
             diffs[0, 0] = int.MaxValue;
@@ -118,17 +118,17 @@ public class Problem1300
 
     public int FindBestValue(int[] arr, int target)
     {
-        Diff diff = new Diff();
+        Differ differ = new Differ();
         int value = Max(arr);
         int sum = Sum(arr);
-        diff.SetValueAndDiff(value, Math.Abs(sum - target));
+        differ.SetValueAndDiff(value, Math.Abs(sum - target));
         while (sum > target)
         {
             value--;
             ReduceArray(arr, value);
             sum = Sum(arr);
-            diff.SetValueAndDiff(value, Math.Abs(sum - target));
+            differ.SetValueAndDiff(value, Math.Abs(sum - target));
         }
-        return diff.GetBestValue();
+        return differ.GetBestValue();
     }
 }
