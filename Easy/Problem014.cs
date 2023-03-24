@@ -4,6 +4,7 @@ public class Problem014
     {
         Console.WriteLine(LongestCommonPrefix(new string[] { "flower", "flow", "flight" }).Equals(new string("fl")));
         Console.WriteLine(LongestCommonPrefix(new string[] { "dog", "racecar", "car" }).Equals(new string("")));
+        Console.WriteLine(LongestCommonPrefix(new string[] { "ab", "a"}).Equals(new string("a")));
     }
 
     public string LongestCommonPrefix(string[] strs)
@@ -14,7 +15,7 @@ public class Problem014
             bool isDifferent = false;
             for (int j = 1; j < strs.Length; j++)
             {
-                if (j == strs[j].Length || strs[0][i] != strs[j][i])
+                if (i == strs[j].Length || strs[0][i] != strs[j][i])
                 {
                     isDifferent = true;
                     break;
