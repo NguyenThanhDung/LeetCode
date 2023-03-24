@@ -125,7 +125,7 @@ public class Problem1300
             else
                 value = differ.GetAverageValue();
 
-            int diff = target - GetRestrictedSum(arr, value);
+            int diff = GetRestrictedSum(arr, value) - target;
             differ.SetValueAndDiff(value, diff);
         }
 
