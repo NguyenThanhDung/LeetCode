@@ -7,6 +7,7 @@ public class Problem1300
         Console.WriteLine(FindBestValue(new int[] { 4, 9, 3 }, 10) == 3);
         Console.WriteLine(FindBestValue(new int[] { 2, 3, 5 }, 10) == 5);
         Console.WriteLine(FindBestValue(new int[] { 60864, 25176, 27249, 21296, 20204 }, 56803) == 11361);
+        Console.WriteLine(FindBestValue(new int[] { 2, 3, 5 }, 11) == 5);
 
         Input input = new Input("Medium", "Input1300.txt");
         DateTime start = DateTime.Now;
@@ -92,10 +93,23 @@ public class Problem1300
                 diffs[0, 0] = value;
                 diffs[0, 1] = diff;
             }
-            else
+            else if (Math.Abs(diffs[0, 1]) < Math.Abs(diffs[1, 1]))
             {
                 diffs[1, 0] = value;
                 diffs[1, 1] = diff;
+            }
+            else
+            {
+                if (diffs[0, 0] > diffs[1, 0])
+                {
+                    diffs[0, 0] = value;
+                    diffs[0, 1] = diff;
+                }
+                else
+                {
+                    diffs[1, 0] = value;
+                    diffs[1, 1] = diff;
+                }
             }
         }
 
