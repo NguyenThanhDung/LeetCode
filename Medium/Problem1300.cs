@@ -104,26 +104,11 @@ public class Problem1300
             return Math.Abs(diffs[0, 1]) < Math.Abs(diffs[1, 1]) ? diffs[0, 0] : diffs[1, 0];
         }
 
-        public int GetAbsoluteDifferenceOfClosestValue()
-        {
-            return Math.Abs(diffs[0, 1]) < Math.Abs(diffs[1, 1]) ? Math.Abs(diffs[0, 1]) : Math.Abs(diffs[1, 1]);
-        }
-
         public int GetAverageValue()
         {
             if (diffs[0, 0] == int.MaxValue || diffs[1, 0] == int.MaxValue)
                 return int.MaxValue / 2;
             return (diffs[0, 0] + diffs[1, 0]) / 2;
-        }
-
-        public int GetBestValue()
-        {
-            if (diffs[0, 1] < diffs[1, 1])
-                return diffs[0, 0];
-            else if (diffs[0, 1] > diffs[1, 1])
-                return diffs[1, 0];
-            else
-                return (diffs[0, 0] < diffs[1, 0]) ? diffs[0, 0] : diffs[1, 0];
         }
     }
 
