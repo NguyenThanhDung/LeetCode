@@ -10,7 +10,7 @@ public class Problem1300
 
         Input input = new Input("Medium", "Input1300.txt");
         DateTime start = DateTime.Now;
-        Console.WriteLine(FindBestValue(input.arr, input.target));
+        Console.WriteLine(FindBestValue2(input.arr, input.target));
         Console.WriteLine(DateTime.Now - start);
     }
 
@@ -78,6 +78,19 @@ public class Problem1300
         }
     }
 
+    public int GetRestrictedValue(int[] arr, int index, int restrictValue)
+    {
+        return (arr[index] < restrictValue) ? arr[index] : restrictValue;
+    }
+
+    public int GetRestrictedSum(int[] arr, int restrictValue)
+    {
+        int sum = 0;
+        foreach (int val in arr)
+            sum += (val < restrictValue) ? val : restrictValue;
+        return sum;
+    }
+
     private class Differ
     {
         private int[,] diffs;
@@ -91,9 +104,24 @@ public class Problem1300
             diffs[1, 1] = int.MaxValue;
         }
 
+        public int GetAbsoluteDifferenceBetweenValues()
+        {
+            return (diffs[0, 0] == int.MaxValue || diffs[1, 0] == int.MaxValue) ? int.MaxValue : Math.Abs(diffs[0, 0] - diffs[1, 0]);
+        }
+
+        public int GetNumberOfAddedValues()
+        {
+            int count = (diffs[0, 0] < int.MaxValue) ? 1 : 0;
+            count += (diffs[1, 0] < int.MaxValue) ? 1 : 0;
+            return count;
+        }
+
         public void SetValueAndDiff(int value, int diff)
         {
-            if (diffs[0, 1] > diffs[1, 1])
+            if (Math.Abs(diff) > Math.Abs(diffs[0, 1]) && Math.Abs(diff) > Math.Abs(diffs[1, 1]))
+                return;
+
+            if (Math.Abs(diffs[0, 1]) > Math.Abs(diffs[1, 1]))
             {
                 diffs[0, 0] = value;
                 diffs[0, 1] = diff;
@@ -103,6 +131,23 @@ public class Problem1300
                 diffs[1, 0] = value;
                 diffs[1, 1] = diff;
             }
+        }
+
+        public int GetClosestValue()
+        {
+            return Math.Abs(diffs[0, 1]) < Math.Abs(diffs[1, 1]) ? diffs[0, 0] : diffs[1, 0];
+        }
+
+        public int GetAbsoluteDifferenceOfClosestValue()
+        {
+            return Math.Abs(diffs[0, 1]) < Math.Abs(diffs[1, 1]) ? Math.Abs(diffs[0, 1]) : Math.Abs(diffs[1, 1]);
+        }
+
+        public int GetAverageValue()
+        {
+            if (diffs[0, 0] == int.MaxValue || diffs[1, 0] == int.MaxValue)
+                return int.MaxValue / 2;
+            return (diffs[0, 0] + diffs[1, 0]) / 2;
         }
 
         public int GetBestValue()
@@ -130,5 +175,25 @@ public class Problem1300
             differ.SetValueAndDiff(value, Math.Abs(sum - target));
         }
         return differ.GetBestValue();
+    }
+
+    public int FindBestValue2(int[] arr, int target)
+    {
+        int value = int.MaxValue;
+        Differ differ = new Differ();
+        while (differ.GetAbsoluteDifferenceBetweenValues() > 1)
+        {
+            if (differ.GetNumberOfAddedValues() == 0)
+                value = target / arr.Length;
+            else if (differ.GetNumberOfAddedValues() == 1)
+                value = (differ.GetClosestValue() + target) / 2;
+            else
+                value = differ.GetAverageValue();
+
+            int diff = target - GetRestrictedSum(arr, value);
+            differ.SetValueAndDiff(value, diff);
+        }
+
+        return differ.GetClosestValue();
     }
 }
