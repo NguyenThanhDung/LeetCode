@@ -10,3 +10,4 @@ new Problem953();
 new Problem989();
 new Problem1300();
 new Problem1379();
+new Problem2423();
