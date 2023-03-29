@@ -1,0 +1,12 @@
+{
+    "Name": "John Doe",
+    "Age": 30,
+    "Email": "john.doe@example.com",
+    "Code": [
+        "Toyota",
+        [
+            "a",
+            "e"
+        ]
+    ]
+}
