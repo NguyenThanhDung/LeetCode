@@ -56,7 +56,7 @@ public class Problem745
             public int Age { get; set; }
             public string Email { get; set; }
             public string Word { get; set; }
-            public List<List<string>> Code { get; set; }
+            public List<List<string>> PreAndSuff { get; set; }
         }
 
         public Input(string level, string filename)
@@ -75,12 +75,12 @@ public class Problem745
                     Word = JsonSerializer.Deserialize<string>(root.GetProperty("Input")[0].GetRawText())
                 };
 
-                person.Code = new List<List<string>>();
+                person.PreAndSuff = new List<List<string>>();
                 int length = root.GetProperty("Input").GetArrayLength();
                 for(int i = 1; i < length; i++)
                 {
                     List<string> pair = JsonSerializer.Deserialize<List<string>>(root.GetProperty("Input")[i].GetRawText());
-                    person.Code.Add(pair);
+                    person.PreAndSuff.Add(pair);
                 }
 
                 Console.WriteLine();
