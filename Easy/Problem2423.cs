@@ -2,13 +2,18 @@ public class Problem2423
 {
     /*
     for all c in word do
-    H{c} += 1
+        H{c} += 1
+    
+    if num of key in H == 1
+        return true
 
+    if num of key in H == 2
+        return Abs(H[0] - H[1]) == 1
+
+    min = Min(H[0], H[1])
     sum = 0
     for all k in H do
-        if H{k} != H[0] && H{k} != H[1]
-            return false
-        sum += H{k} - Min(H[0],H[1])
+        sum += H{k} - min
     return sum == 1
     */
 
