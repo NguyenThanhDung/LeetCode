@@ -72,14 +72,14 @@ public class Problem745
                     Name = root.GetProperty("Name").GetString(),
                     Age = root.GetProperty("Age").GetInt32(),
                     Email = root.GetProperty("Email").GetString(),
-                    Word = JsonSerializer.Deserialize<string>(root.GetProperty("Code")[0].GetRawText())
+                    Word = JsonSerializer.Deserialize<string>(root.GetProperty("Input")[0].GetRawText())
                 };
 
                 person.Code = new List<List<string>>();
-                int length = root.GetProperty("Code").GetArrayLength();
+                int length = root.GetProperty("Input").GetArrayLength();
                 for(int i = 1; i < length; i++)
                 {
-                    List<string> pair = JsonSerializer.Deserialize<List<string>>(root.GetProperty("Code")[i].GetRawText());
+                    List<string> pair = JsonSerializer.Deserialize<List<string>>(root.GetProperty("Input")[i].GetRawText());
                     person.Code.Add(pair);
                 }
 
