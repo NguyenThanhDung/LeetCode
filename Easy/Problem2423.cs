@@ -32,8 +32,6 @@ public class Problem2423
     {
         if (word.Length < 2)
             return true;
-        if (word.Length == 2)
-            return word[0] == word[1];
 
         Dictionary<char, int> counter = new Dictionary<char, int>();
         foreach (char c in word)
@@ -44,35 +42,16 @@ public class Problem2423
                 counter.Add(c, 1);
         }
 
-        int i = 0;
-        int first = 0;
-        int second = 0;
-        foreach (char k in counter.Keys)
-        {
-            if (i == 0)
-            {
-                first = counter[k];
-                i++;
-            }
-            else if (i == 1)
-            {
-                second = counter[k];
-                i++;
-            }
-            else
-            {
-                break;
-            }
-        }
+        if(counter.Count == 1)
+            return true;
 
+        if(counter.Count == 2)
+            return Math.Abs(counter.ElementAt(0).Value - counter.ElementAt(1).Value) == 1;
+
+        int min = Math.Min(counter.ElementAt(0).Value, counter.ElementAt(1).Value);
         int sum = 0;
         foreach (char k in counter.Keys)
-        {
-            if (counter[k] != first && counter[k] != second)
-                return false;
-            sum += counter[k] - (first < second ? first : second);
-        }
-
+            sum += counter[k] - min;
         return sum == 1;
     }
 }
