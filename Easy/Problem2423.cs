@@ -14,7 +14,12 @@ public class Problem2423
     sum = 0
     for all k in H do
         sum += H{k} - min
-    return sum == 1
+    if sum == 1
+        return true
+    else if sum == 0 and H[0] == 1
+        return true
+    else
+        return false
     */
 
     public Problem2423()
@@ -26,6 +31,7 @@ public class Problem2423
         Console.WriteLine(EqualFrequency("aabbbccc") == false);
         Console.WriteLine(EqualFrequency("aabcc") == false);
         Console.WriteLine(EqualFrequency("aaabbc") == false);
+        Console.WriteLine(EqualFrequency("bac") == true);
     }
 
     public bool EqualFrequency(string word)
@@ -52,6 +58,12 @@ public class Problem2423
         int sum = 0;
         foreach (char k in counter.Keys)
             sum += counter[k] - min;
-        return sum == 1;
+        
+        if(sum == 1)
+            return true;
+        else if (sum == 0 && counter.ElementAt(0).Value == 1)
+            return true;
+        else
+            return false;
     }
 }
