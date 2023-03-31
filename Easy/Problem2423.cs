@@ -47,6 +47,7 @@ public class Problem2423
         Console.WriteLine(EqualFrequency("abccdd") == false);   // {a:1, b:1, c:2, d:2} -> {1:2, 2:2}       -> numOfFrequencies: 2  -> There is no count == 1   -> false
         Console.WriteLine(EqualFrequency("abcccddd") == false); // {a:1, b:1, c:3, d:3} -> {1:2, 3:2}       -> numOfFrequencies: 2  -> There is no count == 1   -> false
         Console.WriteLine(EqualFrequency("babbdd") == false);   // {a:1, b:3, d:2}      -> {1:1, 3:1, 2:1}  -> numOfFrequencies: 3  -> false
+        Console.WriteLine(EqualFrequency("az") == true);
     }
 
     public bool EqualFrequency(string word)
