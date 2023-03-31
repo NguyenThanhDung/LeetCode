@@ -29,14 +29,11 @@ public class Problem2423
 
     public Problem2423()
     {
-        Console.WriteLine(EqualFrequency("abcc") == true);
-        Console.WriteLine(EqualFrequency("aazz") == false);
-        Console.WriteLine(EqualFrequency("abccc") == false);
-        Console.WriteLine(EqualFrequency("abbcc") == true);
-        Console.WriteLine(EqualFrequency("aabbbccc") == false);
-        Console.WriteLine(EqualFrequency("aabcc") == true);
-        Console.WriteLine(EqualFrequency("aaabbc") == false);
-        Console.WriteLine(EqualFrequency("bac") == true);
+        Console.WriteLine(EqualFrequency("abcc") == true);      // {a:1, b:1, c:2}  -> {1:2, 2:1}       -> numOfFrequencies: 2
+        Console.WriteLine(EqualFrequency("aazz") == false);     // {a:2, z:2}       -> {2:2}            -> numOfFrequencies: 1  -> Frequency > 1    -> false
+        Console.WriteLine(EqualFrequency("abbcc") == true);     // {a:1, b:2, c:2}  -> {1:1, 2:2}       -> numOfFrequencies: 2  -> Contains frequency 1 and its quality is 1    -> true
+        Console.WriteLine(EqualFrequency("bac") == true);       // {a:1, b:1, c:1}  -> {1:3}            -> numOfFrequencies: 1  -> Frequency == 1   -> true
+        Console.WriteLine(EqualFrequency("babbdd") == false);   // {a:1, b:3, d:2}  -> {1:1, 3:1, 2:1}  -> numOfFrequencies: 3 -> false
     }
 
     public bool EqualFrequency(string word)
