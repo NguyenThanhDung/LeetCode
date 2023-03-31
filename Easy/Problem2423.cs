@@ -29,13 +29,17 @@ public class Problem2423
 
     public Problem2423()
     {
-        Console.WriteLine(EqualFrequency("aaa") == true);       // {a:3}            -> NumberOfCharTypes == 1                   -> true
-        Console.WriteLine(EqualFrequency("aazzz") == false);    // {a:2, z:3}       -> NumberOfCharTypes == 2 && Abs(qual1 - qual2) == 1            -> true
-        Console.WriteLine(EqualFrequency("bac") == true);       // {a:1, b:1, c:1}  -> {1:3}            -> numOfFrequencies: 1  -> Frequency == 1   -> true
-        Console.WriteLine(EqualFrequency("aazz") == false);     // {a:2, z:2}       -> {2:2}            -> numOfFrequencies: 1  -> Frequency > 1    -> false
-        Console.WriteLine(EqualFrequency("abbcc") == true);     // {a:1, b:2, c:2}  -> {1:1, 2:2}       -> numOfFrequencies: 2  -> Contains frequency 1 and its count is 1    -> true
-        Console.WriteLine(EqualFrequency("abcc") == true);      // {a:1, b:1, c:2}  -> {1:2, 2:1}       -> numOfFrequencies: 2  -> Abs(freq1 - freq2) == 1 and Max(freq1.count, freq2.count) == 1
-        Console.WriteLine(EqualFrequency("babbdd") == false);   // {a:1, b:3, d:2}  -> {1:1, 3:1, 2:1}  -> numOfFrequencies: 3  -> false
+        Console.WriteLine(EqualFrequency("aaa") == true);       // {a:3}                -> NumberOfCharTypes == 1                   -> true
+        Console.WriteLine(EqualFrequency("aazzz") == false);    // {a:2, z:3}           -> NumberOfCharTypes == 2 && Abs(count1 - count2) == 1          -> true
+        Console.WriteLine(EqualFrequency("aazz") == false);     // {a:2, z:2}           -> NumberOfCharTypes == 2 && Abs(count1 - count2) != 1          -> false
+        Console.WriteLine(EqualFrequency("bac") == true);       // {a:1, b:1, c:1}      -> {1:3}            -> numOfFrequencies: 1  -> Frequency == 1   -> true
+        Console.WriteLine(EqualFrequency("aabbcc") == true);    // {a:2, b:2, c:2}      -> {2:3}            -> numOfFrequencies: 1  -> Frequency > 1    -> false
+        Console.WriteLine(EqualFrequency("abbcc") == true);     // {a:1, b:2, c:2}      -> {1:1, 2:2}       -> numOfFrequencies: 2  -> There is one count == 1  -> Its frequency == 1       -> true
+        Console.WriteLine(EqualFrequency("abccdd") == true);    // {a:1, b:1, c:2, d:2} -> {1:2, 2:2}       -> numOfFrequencies: 2  -> There is one count == 1  -> Its frequency > 1        -> false
+        Console.WriteLine(EqualFrequency("abcc") == true);      // {a:1, b:1, c:2}      -> {1:2, 2:1}       -> numOfFrequencies: 2  -> There is one count == 1  -> Abs(freq1 - freq2) == 1  -> true
+        Console.WriteLine(EqualFrequency("abccc") == false);    // {a:1, b:1, c:3}      -> {1:2, 3:1}       -> numOfFrequencies: 2  -> There is one count == 1  -> Abs(freq1 - freq2) > 1   -> false
+        Console.WriteLine(EqualFrequency("abcccddd") == false); // {a:1, b:1, c:3, d:3} -> {1:2, 3:2}       -> numOfFrequencies: 2  -> There is no count == 1   -> false
+        Console.WriteLine(EqualFrequency("babbdd") == false);   // {a:1, b:3, d:2}      -> {1:1, 3:1, 2:1}  -> numOfFrequencies: 3  -> false
     }
 
     public bool EqualFrequency(string word)
