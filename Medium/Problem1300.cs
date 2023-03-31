@@ -136,7 +136,7 @@ public class Problem1300
             if (differ.GetNumberOfAddedValues() == 0)
                 value = target / arr.Length;
             else if (differ.GetNumberOfAddedValues() == 1)
-                value = (differ.GetClosestValue() + target) / 2;
+                value = target * arr.Length;
             else
                 value = differ.GetAverageValue();
 
