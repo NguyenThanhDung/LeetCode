@@ -66,8 +66,8 @@ public class Problem1300
         public Differ()
         {
             diffs = new int[2, 2];
-            diffs[0, 0] = int.MaxValue;
-            diffs[0, 1] = int.MaxValue;
+            diffs[0, 0] = int.MinValue;
+            diffs[0, 1] = int.MinValue;
             diffs[1, 0] = int.MaxValue;
             diffs[1, 1] = int.MaxValue;
         }
@@ -79,34 +79,24 @@ public class Problem1300
 
         public int GetNumberOfAddedValues()
         {
-            int count = (diffs[0, 0] < int.MaxValue) ? 1 : 0;
+            int count = (diffs[0, 0] > int.MinValue) ? 1 : 0;
             count += (diffs[1, 0] < int.MaxValue) ? 1 : 0;
             return count;
         }
 
         public void SetValueAndDiff(int value, int diff)
         {
-            if (Math.Abs(diff) > Math.Abs(diffs[0, 1]) && Math.Abs(diff) > Math.Abs(diffs[1, 1]))
-                return;
-
-            if (Math.Abs(diffs[0, 1]) > Math.Abs(diffs[1, 1]))
+            if (diff < 0)
             {
-                diffs[0, 0] = value;
-                diffs[0, 1] = diff;
-            }
-            else if (Math.Abs(diffs[0, 1]) < Math.Abs(diffs[1, 1]))
-            {
-                diffs[1, 0] = value;
-                diffs[1, 1] = diff;
-            }
-            else
-            {
-                if (diffs[0, 0] > diffs[1, 0])
+                if (diff >= diffs[0, 1])
                 {
                     diffs[0, 0] = value;
                     diffs[0, 1] = diff;
                 }
-                else
+            }
+            else
+            {
+                if (diff <= diffs[1, 1])
                 {
                     diffs[1, 0] = value;
                     diffs[1, 1] = diff;
@@ -116,7 +106,7 @@ public class Problem1300
 
         public int GetClosestValue()
         {
-            return Math.Abs(diffs[0, 1]) < Math.Abs(diffs[1, 1]) ? diffs[0, 0] : diffs[1, 0];
+            return Math.Abs(diffs[0, 1]) <= Math.Abs(diffs[1, 1]) ? diffs[0, 0] : diffs[1, 0];
         }
 
         public int GetAverageValue()
