@@ -2,29 +2,36 @@ public class Problem2423
 {
     /*
     for all c in word do
-        H{c} += 1
+        charCounters{c} += 1
     
-    if num of key in H == 1
+    if count of charCounters == 1
         return true
 
-    if num of key in H == 2
+    if count of charCounters == 2
         return Abs(H[0] - H[1]) == 1
 
-    min = Min(H[0], H[1])
-    sum = 0
-    numOfSingleChar = 0
-    for all k in H do
-        sum += H{k} - min
-        if H{k} == 1
-            numOfSingleChar++
-    if sum == 1
-        return true
-    else if sum == 0 and H[0] == 1
-        return true
-    else if sum > 1 and numOfSingleChar == 1
-        return true
-    else
-        return false
+    for all (key, value) of charCounters do
+        freqCounters{value} += 1
+
+    if count of freqCounters == 1
+        return freqCounters.Keys[0] == 1
+
+    if count of freqCounters == 2
+        if freqCounters[0].Value == 1 or freqCounters[1].Value == 1
+            if freqCounters[0].Value == 1
+                if freqCounters[0].Key == 1
+                    return true
+                else
+                    return Abs(freqCounters[0].Key - freqCounters[1].Key) == 1
+            if freqCounters[1].Value == 1
+                if freqCounters[1].Key == 1
+                    return true
+                else
+                    return Abs(freqCounters[0].Key - freqCounters[1].Key) == 1
+        else
+            return false
+
+    return false
     */
 
     public Problem2423()
