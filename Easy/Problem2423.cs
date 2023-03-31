@@ -29,11 +29,13 @@ public class Problem2423
 
     public Problem2423()
     {
-        Console.WriteLine(EqualFrequency("abcc") == true);      // {a:1, b:1, c:2}  -> {1:2, 2:1}       -> numOfFrequencies: 2
-        Console.WriteLine(EqualFrequency("aazz") == false);     // {a:2, z:2}       -> {2:2}            -> numOfFrequencies: 1  -> Frequency > 1    -> false
-        Console.WriteLine(EqualFrequency("abbcc") == true);     // {a:1, b:2, c:2}  -> {1:1, 2:2}       -> numOfFrequencies: 2  -> Contains frequency 1 and its quality is 1    -> true
+        Console.WriteLine(EqualFrequency("aaa") == true);       // {a:3}            -> NumberOfCharTypes == 1                   -> true
+        Console.WriteLine(EqualFrequency("aazzz") == false);    // {a:2, z:3}       -> NumberOfCharTypes == 2 && Abs(qual1 - qual2) == 1            -> true
         Console.WriteLine(EqualFrequency("bac") == true);       // {a:1, b:1, c:1}  -> {1:3}            -> numOfFrequencies: 1  -> Frequency == 1   -> true
-        Console.WriteLine(EqualFrequency("babbdd") == false);   // {a:1, b:3, d:2}  -> {1:1, 3:1, 2:1}  -> numOfFrequencies: 3 -> false
+        Console.WriteLine(EqualFrequency("aazz") == false);     // {a:2, z:2}       -> {2:2}            -> numOfFrequencies: 1  -> Frequency > 1    -> false
+        Console.WriteLine(EqualFrequency("abbcc") == true);     // {a:1, b:2, c:2}  -> {1:1, 2:2}       -> numOfFrequencies: 2  -> Contains frequency 1 and its count is 1    -> true
+        Console.WriteLine(EqualFrequency("abcc") == true);      // {a:1, b:1, c:2}  -> {1:2, 2:1}       -> numOfFrequencies: 2  -> Abs(freq1 - freq2) == 1 and Max(freq1.count, freq2.count) == 1
+        Console.WriteLine(EqualFrequency("babbdd") == false);   // {a:1, b:3, d:2}  -> {1:1, 3:1, 2:1}  -> numOfFrequencies: 3  -> false
     }
 
     public bool EqualFrequency(string word)
