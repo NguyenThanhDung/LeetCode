@@ -8,6 +8,7 @@ public class Problem1300
         Console.WriteLine(FindBestValue(new int[] { 2, 3, 5 }, 10) == 5);
         Console.WriteLine(FindBestValue(new int[] { 60864, 25176, 27249, 21296, 20204 }, 56803) == 11361);
         Console.WriteLine(FindBestValue(new int[] { 2, 3, 5 }, 11) == 5);
+        Console.WriteLine(FindBestValue(new int[] { 1, 2, 23, 24, 34, 36 }, 110) == 30);
 
         Input input = new Input("Medium", "Input1300.txt");
         DateTime start = DateTime.Now;
