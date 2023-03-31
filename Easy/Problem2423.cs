@@ -69,23 +69,44 @@ public class Problem2423
         if (counter.Count == 2)
             return Math.Abs(counter.ElementAt(0).Value - counter.ElementAt(1).Value) == 1;
 
-        int min = Math.Min(counter.ElementAt(0).Value, counter.ElementAt(1).Value);
-        int sum = 0;
-        int numOfSingleChar = 0;
+        Dictionary<int, int> frequency = new Dictionary<int, int>();
         foreach (char k in counter.Keys)
         {
-            sum += counter[k] - min;
-            if (counter[k] == 1)
-                numOfSingleChar++;
+            int freq = counter[k];
+            if (frequency.ContainsKey(freq))
+                frequency[freq]++;
+            else
+                frequency.Add(freq, 1);
         }
 
-        if (sum == 1)
-            return true;
-        else if (sum == 0 && counter.ElementAt(0).Value == 1)
-            return true;
-        else if (sum > 1 && numOfSingleChar == 1)
-            return true;
-        else
-            return false;
+        if (frequency.Count == 1)
+            return frequency.ElementAt(0).Key == 1;
+
+        if (frequency.Count == 2)
+        {
+            if (frequency.ElementAt(0).Value == 1 || frequency.ElementAt(1).Value == 1)
+            {
+                if (frequency.ElementAt(0).Value == 1)
+                {
+                    if (frequency.ElementAt(0).Key == 1)
+                        return true;
+                    else
+                        return Math.Abs(frequency.ElementAt(0).Key - frequency.ElementAt(1).Key) == 1;
+                }
+                else
+                {
+                    if (frequency.ElementAt(1).Key == 1)
+                        return true;
+                    else
+                        return Math.Abs(frequency.ElementAt(0).Key - frequency.ElementAt(1).Key) == 1;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        return false;
     }
 }
