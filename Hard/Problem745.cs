@@ -55,7 +55,7 @@ public class Problem745
             public string Name { get; set; }
             public int Age { get; set; }
             public string Email { get; set; }
-            public string Words { get; set; }
+            public List<string> Words { get; set; }
             public List<List<string>> Filters { get; set; }
         }
 
@@ -72,7 +72,7 @@ public class Problem745
                     Name = root.GetProperty("Name").GetString(),
                     Age = root.GetProperty("Age").GetInt32(),
                     Email = root.GetProperty("Email").GetString(),
-                    Words = JsonSerializer.Deserialize<string>(root.GetProperty("Words").GetRawText())
+                    Words = JsonSerializer.Deserialize<List<string>>(root.GetProperty("Words").GetRawText())
                 };
 
                 person.Filters = new List<List<string>>();

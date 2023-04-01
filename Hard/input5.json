@@ -2,7 +2,10 @@
     "Name": "John Doe",
     "Age": 30,
     "Email": "john.doe@example.com",
-    "Words": "A word",
+    "Words": [
+        "Word1",
+        "Word2"
+    ],
     "Filters": [
         [
             "dexd",
