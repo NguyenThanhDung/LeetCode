@@ -12,12 +12,7 @@ public class Problem745
         Console.WriteLine(index == 0);
 
         Input input = new Input("Hard", "input.json");
-        // foreach (string word in input.words)
-        //     Console.Write(word + " ");
-        // Console.WriteLine();
-        // foreach (string[] pair in input.filters)
-        //     Console.Write("[" + pair[0] + "," + pair[1] + "] ");
-        // Console.WriteLine();
+        wordFilter = new WordFilter(input.Words.ToArray());
     }
 
     public class WordFilter
