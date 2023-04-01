@@ -13,6 +13,10 @@ public class Problem745
 
         Input input = new Input("Hard", "input.json");
         wordFilter = new WordFilter(input.Words.ToArray());
+        DateTime start = DateTime.Now;
+        foreach(List<string> filter in input.Filters)
+            Console.WriteLine(wordFilter.F(filter[0], filter[1]));
+        Console.WriteLine(DateTime.Now - start);
     }
 
     public class WordFilter
