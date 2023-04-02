@@ -8,7 +8,14 @@ public class Problem2423
         return true
 
     if count of charCounters == 2
-        return Abs(H[0] - H[1]) == 1
+    {
+        int diff = Abs(H[0] - H[1])
+        if diff == 1
+            return true
+        if diff == 0
+            return H[0] == 1
+        return false
+    }
 
     for all (key, value) of charCounters do
         freqCounters{value} += 1
