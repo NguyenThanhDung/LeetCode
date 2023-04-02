@@ -9,12 +9,9 @@ public class Problem2423
 
     if count of charCounters == 2
     {
-        int diff = Abs(H[0] - H[1])
-        if diff == 1
+        if H[0] == 1 or H[1] == 1
             return true
-        if diff == 0
-            return H[0] == 1
-        return false
+        return Abs(H[0] - H[1]) == 1
     }
 
     for all (key, value) of charCounters do
@@ -78,12 +75,9 @@ public class Problem2423
 
         if (counter.Count == 2)
         {
-            int diff = Math.Abs(counter.ElementAt(0).Value - counter.ElementAt(1).Value);
-            if (diff == 1)
+            if (counter.ElementAt(0).Value == 1 || counter.ElementAt(1).Value == 1)
                 return true;
-            if (diff == 0)
-                return counter.ElementAt(0).Value == 1;
-            return false;
+            return Math.Abs(counter.ElementAt(0).Value - counter.ElementAt(1).Value) == 1;
         }
 
         Dictionary<int, int> frequency = new Dictionary<int, int>();
