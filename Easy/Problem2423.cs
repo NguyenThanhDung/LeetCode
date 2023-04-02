@@ -76,7 +76,14 @@ public class Problem2423
             return true;
 
         if (counter.Count == 2)
-            return Math.Abs(counter.ElementAt(0).Value - counter.ElementAt(1).Value) == 1;
+        {
+            int diff = Math.Abs(counter.ElementAt(0).Value - counter.ElementAt(1).Value);
+            if (diff == 1)
+                return true;
+            if (diff == 0)
+                return counter.ElementAt(0).Value == 1;
+            return false;
+        }
 
         Dictionary<int, int> frequency = new Dictionary<int, int>();
         foreach (char k in counter.Keys)
