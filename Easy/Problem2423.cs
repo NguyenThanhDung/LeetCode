@@ -26,12 +26,12 @@ public class Problem2423
                 if freqCounters[0].Key == 1
                     return true
                 else
-                    return Abs(freqCounters[0].Key - freqCounters[1].Key) == 1
+                    return freqCounters[0].Key - freqCounters[1].Key == 1
             if freqCounters[1].Value == 1
                 if freqCounters[1].Key == 1
                     return true
                 else
-                    return Abs(freqCounters[0].Key - freqCounters[1].Key) == 1
+                    return freqCounters[1].Key - freqCounters[0].Key == 1
         else
             return false
 
@@ -103,14 +103,14 @@ public class Problem2423
                     if (frequency.ElementAt(0).Key == 1)
                         return true;
                     else
-                        return Math.Abs(frequency.ElementAt(0).Key - frequency.ElementAt(1).Key) == 1;
+                        return frequency.ElementAt(0).Key - frequency.ElementAt(1).Key == 1;
                 }
                 else
                 {
                     if (frequency.ElementAt(1).Key == 1)
                         return true;
                     else
-                        return Math.Abs(frequency.ElementAt(0).Key - frequency.ElementAt(1).Key) == 1;
+                        return frequency.ElementAt(1).Key - frequency.ElementAt(0).Key == 1;
                 }
             }
             else
