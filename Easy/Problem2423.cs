@@ -44,10 +44,11 @@ public class Problem2423
     public Problem2423()
     {
         Console.WriteLine(EqualFrequency("aaa") == true);       // {a:3}                -> NumberOfCharTypes == 1   -> true
+        Console.WriteLine(EqualFrequency("az") == true);        // {a:1, z:1}           -> NumberOfCharTypes == 2   -> count1 == 1 || count2 == 1   -> true
+        Console.WriteLine(EqualFrequency("cccd") == true);      // {c:3, d:1}           -> NumberOfCharTypes == 2   -> count1 == 1 || count2 == 1   -> true
         Console.WriteLine(EqualFrequency("aazzz") == true);     // {a:2, z:3}           -> NumberOfCharTypes == 2   -> Abs(count1 - count2) == 1    -> true
-        Console.WriteLine(EqualFrequency("az") == true);        // {a:1, z:1}           -> NumberOfCharTypes == 2   -> Abs(count1 - count2) == 0    -> count1 == 1  -> true
-        Console.WriteLine(EqualFrequency("aazz") == false);     // {a:2, z:2}           -> NumberOfCharTypes == 2   -> Abs(count1 - count2) == 0    -> count1 == 2  -> false
-        Console.WriteLine(EqualFrequency("aazzzz") == false);   // {a:2, z:4}           -> NumberOfCharTypes == 2   -> Abs(count1 - count2) > 1     -> false
+        Console.WriteLine(EqualFrequency("aazz") == false);     // {a:2, z:2}           -> NumberOfCharTypes == 2   -> Abs(count1 - count2) != 0    -> false
+        Console.WriteLine(EqualFrequency("aazzzz") == false);   // {a:2, z:4}           -> NumberOfCharTypes == 2   -> Abs(count1 - count2) != 0    -> false
         Console.WriteLine(EqualFrequency("bac") == true);       // {a:1, b:1, c:1}      -> {1:3}            -> numOfFrequencies: 1  -> Frequency == 1   -> true
         Console.WriteLine(EqualFrequency("aabbcc") == false);   // {a:2, b:2, c:2}      -> {2:3}            -> numOfFrequencies: 1  -> Frequency > 1    -> false
         Console.WriteLine(EqualFrequency("abbcc") == true);     // {a:1, b:2, c:2}      -> {1:1, 2:2}       -> numOfFrequencies: 2  -> There is one count == 1  -> Its frequency == 1   -> true
