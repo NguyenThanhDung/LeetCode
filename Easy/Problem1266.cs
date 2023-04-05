@@ -15,6 +15,12 @@ public class Problem1266
 
     public int MinTimeToVisitTwoPoints(int[] point1, int[] point2)
     {
-        return 0;
+        int h = Math.Abs(point2[0] - point1[0]);
+        int v = Math.Abs(point2[1] - point1[1]);
+        int minDiagon = Math.Min(h, v);
+
+        // Find newA then calculate minStraight
+        int minStraight = 0;
+        return minDiagon + minStraight;
     }
 }
