@@ -1,0 +1,11 @@
+arr     = {60864, 25176, 27249, 21296, 20204}
+target  = 56803
+
+differ                  differ.AbsDiffVals()    differ.AddedVals()  value   RestrictedSum   diff
+{Min:Min, Max:Max}      ~                       0                   1(Init) 5               -56798
+{1:-56798, Max:Max}     ~                       1                   60864   154789          97986
+{1:-56798, 60864:97986} 60863                   2                   30432   124357          67554   -> differ.Bottom.Value <0 and differ.top.Value >= 0 == True     -> diff > 0 -> Assign to top
+{1:-56798, 30432:67554} 30431                   2                   15216   76080           19277   -> differ.Bottom.Value <0 and differ.top.Value >= 0 == True     -> diff > 0 -> Assign to top
+{1:-56798, 15216:19277} 15215                   2                   7608    38040           -18763  -> differ.Bottom.Value <0 and differ.top.Value >= 0 == false    -> Abs(differ.Bottom.Value) > Abs(differ.Top.Value) -> Assign to Bottom
+
+return 5
