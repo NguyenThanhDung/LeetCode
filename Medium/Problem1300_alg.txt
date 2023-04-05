@@ -1,0 +1,17 @@
+FindBestValue(originalList, target)
+    
+    while(differ.ValuesDifference() > 1)    // If both value are Max, return Max
+        if (differ.NumOfAddedValue() == 0)
+            value = target / originalList.Length
+        else if (differ.NumOfAddedValue() == 1)
+            value = (differ.GetClosestValue() + target) / 2
+        else
+            value = differ.GetAverageValue()
+        
+        tempArray = GetTempArray(originalList, value)
+        sum = GetArraySum(tempArray)
+        diff = target - sum
+        if (Abs(diff) < differ.GetAbsMinDiff()) // May cause infinite loop
+            differ.Put(value, diff)
+    
+    return differ.GetClosestValue()
