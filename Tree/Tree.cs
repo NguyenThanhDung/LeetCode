@@ -9,6 +9,14 @@ public class Tree
         root = null;
     }
 
+    public TreeNode Root
+    {
+        get
+        {
+            return this.root;
+        }
+    }
+
     public void Insert(Queue<Object> values)
     {
         if (values == null || values.Count == 0)
