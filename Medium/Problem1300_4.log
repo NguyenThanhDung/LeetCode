@@ -1,11 +1,25 @@
 arr     = {60864, 25176, 27249, 21296, 20204}
 target  = 56803
 
-differ                  differ.AbsDiffVals()    differ.AddedVals()  value   RestrictedSum   diff
-{Min:Min, Max:Max}      ~                       0                   1(Init) 5               -56798
-{1:-56798, Max:Max}     ~                       1                   60864   154789          97986
-{1:-56798, 60864:97986} 60863                   2                   30432   124357          67554   -> differ.Bottom.Value <0 and differ.top.Value >= 0 == True     -> diff > 0 -> Assign to top
-{1:-56798, 30432:67554} 30431                   2                   15216   76080           19277   -> differ.Bottom.Value <0 and differ.top.Value >= 0 == True     -> diff > 0 -> Assign to top
-{1:-56798, 15216:19277} 15215                   2                   7608    38040           -18763  -> differ.Bottom.Value <0 and differ.top.Value >= 0 == false    -> Abs(differ.Bottom.Value) > Abs(differ.Top.Value) -> Assign to Bottom
+differ                      differ.AbsDiffVals()    differ.AddedVals()  value   RestrictedSum   diff
+{Min:Min, Max:Max}          ~                       0                   1(Init) 5               -56798
+{1:-56798, Max:Max}         ~                       1                   60864   154789          97986
+{1:-56798, 60864:97986}     60863                   2                   30432   124357          67554   -> differ > 0 == true -> Assign to top
+{1:-56798, 30432:67554}     30431                   2                   15216   76080           19277   -> differ > 0 == true -> Assign to top
+{1:-56798, 15216:19277}     15215                   2                   7608    38040           -18763  -> differ > 0 == false -> Assign to bottom
+{7608:-18763, 15216:19277}  7608                    2                   11412   57060           257     -> differ > 0 == true -> Assign to top
+{7608:-18763, 11412:257}    3804                    2                   9510    47550           -9253   -> differ > 0 == false -> Assign to bottom
+{9510:-9253, 11412:257}     1902                    2                   10461   52305           -4498   -> differ > 0 == false -> Assign to bottom
+{10461:-4498, 11412:257}                                                10936   54680           -2123   -> differ > 0 == false -> Assign to bottom
+{10936:-2123, 11412:257}                                                11174   55870           -933    -> differ > 0 == false -> Assign to bottom
+{11174:-933, 11412:257}                                                 11293   56465           -338    -> differ > 0 == false -> Assign to bottom
+{11293:-338, 11412:257}                                                 11352   56760           -43     -> differ > 0 == false -> Assign to bottom
+{11352:-43, 11412:257}                                                  11382   56910           107     -> differ > 0 == true -> Assign to top
+{11352:-43, 11382:107}                                                  11367   56835           32      -> differ > 0 == true -> Assign to top
+{11352:-43, 11367:32}                                                   11359   56795           -8      -> differ > 0 == false -> Assign to bottom
+{11359:-8, 11367:32}                                                    11363   56815           12      -> differ > 0 == true -> Assign to top
+{11359:-8, 11363:12}                                                    11361   56805           2       -> differ > 0 == true -> Assign to top
+{11359:-8, 11361:2}                                                     11360   56800           -3      -> differ > 0 == false -> Assign to bottom
+{11360:-3, 11361:2}         1
 
-return 5
+return 11361    -> Abs(differ.Bottom.Value) <= Abs(differ.Top.Value) == false -> return differ.Top.Key
