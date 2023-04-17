@@ -8,6 +8,7 @@ new Problem211();
 new Problem745();
 new Problem953();
 new Problem989();
+new Problem1217();
 new Problem1266();
 new Problem1300();
 new Problem1379();
