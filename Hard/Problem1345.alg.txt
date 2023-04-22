@@ -1,0 +1,19 @@
+jump(array, index, steps, minStepCount)
+    if steps.count > minStepCount
+        return
+    if index == array.length - 1
+        minStepCount = steps.count
+        return
+    nextStep = i + 1
+    if steps not contain nextStep
+        jump(array, nextStep, steps.add(nextStep), minStepCount)
+        steps.pop()
+    nextStep = i - 1
+    if steps not contain nextStep
+        jump(array, nextStep, steps.add(nextStep), minStepCount)
+        steps.pop()
+    for each nextStep in getJumpableSteps(index)
+        if steps not contain nextStep
+            jump(array, nextStep, steps.add(nextStep), minStepCount)
+            steps.pop()
+    return minStepCount
