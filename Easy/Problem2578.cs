@@ -8,7 +8,9 @@ public class Problem2578
 
     public int SplitNum(int num)
     {
-        int[] digitArray = num.ToString().ToCharArray().Select(c => int.Parse(c.ToString())).OrderDescending().ToArray();
+        int[] digitArray = num.ToString().ToCharArray().Select(c => int.Parse(c.ToString())).ToArray();
+        Array.Sort(digitArray);
+        Array.Reverse(digitArray);
         int minSum = 0;
         int f = 1;
         for (int i = 0; i < digitArray.Length; i++)
