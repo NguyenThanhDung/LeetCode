@@ -11,9 +11,7 @@ public class Problem1300
         Console.WriteLine(FindBestValue(new int[] { 1, 2, 23, 24, 34, 36 }, 110) == 30);
 
         Input input = new Input("Medium", "Input1300.txt");
-        DateTime start = DateTime.Now;
         Console.WriteLine(FindBestValue(input.arr, input.target) == 4);
-        Console.WriteLine(DateTime.Now - start);
     }
 
     private class Input
@@ -84,24 +82,16 @@ public class Problem1300
             return count;
         }
 
-        public void SetValueAndDiff(int value, int diff)
+        public void SetBottom(int value, int diff)
         {
-            if (diff < 0)
-            {
-                if (diff >= diffs[0, 1])
-                {
-                    diffs[0, 0] = value;
-                    diffs[0, 1] = diff;
-                }
-            }
-            else
-            {
-                if (diff <= diffs[1, 1])
-                {
-                    diffs[1, 0] = value;
-                    diffs[1, 1] = diff;
-                }
-            }
+            diffs[0, 0] = value;
+            diffs[0, 1] = diff;
+        }
+
+        public void SetTop(int value, int diff)
+        {
+            diffs[1, 0] = value;
+            diffs[1, 1] = diff;
         }
 
         public int GetClosestValue()
@@ -124,14 +114,26 @@ public class Problem1300
         while (differ.GetAbsoluteDifferenceBetweenValues() > 1)
         {
             if (differ.GetNumberOfAddedValues() == 0)
-                value = target / arr.Length;
+            {
+                value = 1;
+                int diff = GetRestrictedSum(arr, value) - target;
+                differ.SetBottom(value, diff);
+            }
             else if (differ.GetNumberOfAddedValues() == 1)
-                value = target * arr.Length;
+            {
+                value = arr.Max();
+                int diff = GetRestrictedSum(arr, value) - target;
+                differ.SetTop(value, diff);
+            }
             else
+            {
                 value = differ.GetAverageValue();
-
-            int diff = GetRestrictedSum(arr, value) - target;
-            differ.SetValueAndDiff(value, diff);
+                int diff = GetRestrictedSum(arr, value) - target;
+                if (diff < 0)
+                    differ.SetBottom(value, diff);
+                else
+                    differ.SetTop(value, diff);
+            }
         }
 
         return differ.GetClosestValue();
