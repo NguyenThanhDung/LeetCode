@@ -10,7 +10,7 @@ public class Problem1300
         Console.WriteLine(FindBestValue(new int[] { 2, 3, 5 }, 11) == 5);
         Console.WriteLine(FindBestValue(new int[] { 1, 2, 23, 24, 34, 36 }, 110) == 30);
 
-        Input input = new Input("Medium", "Input1300.txt");
+        Input input = new Input("Medium/Problem1300", "input1.txt");
         Console.WriteLine(FindBestValue(input.arr, input.target) == 4);
     }
 
