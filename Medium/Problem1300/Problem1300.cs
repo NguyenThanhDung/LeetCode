@@ -12,6 +12,9 @@ public class Problem1300
 
         Input input = new Input("Medium/Problem1300", "input1.txt");
         Console.WriteLine(FindBestValue(input.arr, input.target) == 4);
+
+        input = new Input("Medium/Problem1300", "input2.txt");
+        Console.WriteLine(FindBestValue(input.arr, input.target) == 0);
     }
 
     private class Input
@@ -115,7 +118,7 @@ public class Problem1300
         {
             if (differ.GetNumberOfAddedValues() == 0)
             {
-                value = 1;
+                value = 0;
                 int diff = GetRestrictedSum(arr, value) - target;
                 differ.SetBottom(value, diff);
             }
