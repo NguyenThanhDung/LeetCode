@@ -1,4 +1,4 @@
-﻿#define ALL
+﻿#define PROBLEM_1300
 
 #if ALL || PROBLEM_001
 new Problem001();
