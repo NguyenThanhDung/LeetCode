@@ -1,0 +1,12 @@
+arr     = {4, 9, 3}
+target  = 10
+
+differ              differ.AbsDiffVals()    differ.AddedVals()  value   RestrictedSum   diff
+{Min:Min, Max:Max}  ~                       0                   1(Init) 3               -7
+{1:-7, Max:Max}     ~                       1                   9(Max)  16              6
+{1:-7, 9:6}         8                       2                   5(Avg)  12              2       -> differ > 0 == true -> Assign to top
+{1:-7, 5:2}         4                       2                   3       9               -1      -> differ > 0 == false -> Assign to bottom
+{3:-1, 5:2}         2                       2                   4       11              1       -> differ > 0 == trur -> Assign to top
+{3:-1, 4:1}         1   -> Stop
+
+return 3    -> Abs(differ.Bottom.Value) <= Abs(differ.Top.Value) == true -> return differ.Bottom.Key

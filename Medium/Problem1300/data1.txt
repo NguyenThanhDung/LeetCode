@@ -1,0 +1,11 @@
+arr     = {2, 3, 5}
+target  = 11
+
+differ              differ.AbsDiffVals()    differ.AddedVals()  value   RestrictedSum   diff
+{Min:Min, Max:Max}  ~                       0                   1(Init) 3               -8
+{1:-8, Max:Max}     ~                       1                   5(Max)  10              -1
+{1:-8, 5:-1}        4                       2                   3(Avg)  8               -3      -> differ > 0 == false -> Assign bottom
+{3:-3, 5:-1}        2                       2                   4       9               -2      -> differ > 0 == false -> Assign bottom
+{4:-2, 5:-1}        1   -> Stop
+
+return 5    
