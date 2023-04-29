@@ -32,6 +32,29 @@ public class Problem2373
 
     public int[][] LargestLocal(int[][] grid)
     {
-        return new int[][] { new int[] { 0, 0 }, new int[] { 0, 0 } };
+        int[][] largestLocal = new int[grid.Length - 2][];
+        for (int i = 0; i < largestLocal.Length; i++)
+        {
+            largestLocal[i] = new int[grid[0].Length - 2];
+            for (int j = 0; j < largestLocal[i].Length; j++)
+            {
+                largestLocal[i][j] = FindLargest(grid, i + 1, j + 1);
+            }
+        }
+        return largestLocal;
+    }
+
+    private int FindLargest(int[][] grid, int i, int j)
+    {
+        int max = int.MinValue;
+        for (int k = i - 1; k <= i + 1; k++)
+        {
+            for (int l = j - 1; l <= j + 1; l++)
+            {
+                if (grid[k][l] > max)
+                    max = grid[k][l];
+            }
+        }
+        return max;
     }
 }
