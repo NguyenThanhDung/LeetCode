@@ -18,10 +18,16 @@ public class Problem1345
     {
         steps.Push(index);
 
-        if (steps.Count > minStepCount || index == arr.Length)
+        if (steps.Count > minStepCount)
         {
             steps.Pop();
             return minStepCount;
+        }
+
+        if (index == arr.Length - 1)
+        {
+            steps.Pop();
+            return steps.Count + 1;
         }
 
         int nextStep = index + 1;
