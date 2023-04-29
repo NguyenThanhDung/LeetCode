@@ -1,19 +1,18 @@
+minStepCount = array.Length
+
 jump(array, index, steps, minStepCount)
-    if steps.count > minStepCount
-        return
-    if index == array.length - 1
-        minStepCount = steps.count
-        return
-    nextStep = i + 1
-    if steps not contain nextStep
-        jump(array, nextStep, steps.add(nextStep), minStepCount)
-        steps.pop()
-    nextStep = i - 1
-    if steps not contain nextStep
-        jump(array, nextStep, steps.add(nextStep), minStepCount)
-        steps.pop()
+    steps.add(index)
+    if steps.count > minStepCount or index == array.length
+        step.pop()
+        return minStepCount
+    nextStep = index + 1
+    if nextStep < array.length and steps not contain nextStep
+        minStepCount = jump(array, nextStep, steps, minStepCount)
+    nextStep = index - 1
+    if nextStep >= 0 and steps not contain nextStep
+        minStepCount = jump(array, nextStep, steps, minStepCount)
     for each nextStep in getJumpableSteps(index)
         if steps not contain nextStep
-            jump(array, nextStep, steps.add(nextStep), minStepCount)
-            steps.pop()
+            minStepCount = jump(array, nextStep, minStepCount)
+    step.pop()
     return minStepCount
