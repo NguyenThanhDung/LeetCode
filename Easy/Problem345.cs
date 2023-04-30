@@ -9,7 +9,7 @@ public class Problem345
 
     public string ReverseVowels(string s)
     {
-        List<char> reverse = new List<char>();
+        char[] reverse = new char[s.Length];
         int j = s.Length - 1;
         for (int i = 0; i < s.Length; i++)
         {
@@ -19,16 +19,16 @@ public class Problem345
                     j--;
                 if (IsVowels(s[j]))
                 {
-                    reverse.Add(s[j]);
+                    reverse[i] = s[j];
                     j--;
                 }
             }
             else
             {
-                reverse.Add(s[i]);
+                reverse[i] = s[i];
             }
         }
-        return new string(reverse.ToArray());
+        return new string(reverse);
     }
 
     private bool IsVowels(char c)
