@@ -5,6 +5,7 @@ public class Problem205
         Console.WriteLine(IsIsomorphic("egg", "add") == true);
         Console.WriteLine(IsIsomorphic("foo", "bar") == false);
         Console.WriteLine(IsIsomorphic("paper", "title") == true);
+        Console.WriteLine(IsIsomorphic("bbbaaaba", "aaabbbba") == false);
     }
 
     public bool IsIsomorphic(string s, string t)
@@ -17,12 +18,10 @@ public class Problem205
         for (int i = 0; i < s.Length; i++)
         {
             if (list1.Contains(s[i]) == false)
-            {
                 list1.Add(s[i]);
-                if (dict1.ContainsKey(s[i]) == false)
-                    dict1[s[i]] = new List<int>();
-                dict1[s[i]].Add(i);
-            }
+            if (dict1.ContainsKey(s[i]) == false)
+                dict1[s[i]] = new List<int>();
+            dict1[s[i]].Add(i);
         }
 
         List<char> list2 = new List<char>();
@@ -30,12 +29,10 @@ public class Problem205
         for (int i = 0; i < t.Length; i++)
         {
             if (list2.Contains(t[i]) == false)
-            {
                 list2.Add(t[i]);
-                if (dict2.ContainsKey(t[i]) == false)
-                    dict2[t[i]] = new List<int>();
-                dict2[t[i]].Add(i);
-            }
+            if (dict2.ContainsKey(t[i]) == false)
+                dict2[t[i]] = new List<int>();
+            dict2[t[i]].Add(i);
         }
 
         if (list1.Count != list2.Count)
