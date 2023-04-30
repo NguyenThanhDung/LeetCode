@@ -12,33 +12,33 @@ public class Problem205
         if (s.Length != t.Length)
             return false;
 
-        Queue<char> map1 = new Queue<char>();
+        List<char> list1 = new List<char>();
         Dictionary<char, List<int>> dict1 = new Dictionary<char, List<int>>();
         for (int i = 0; i < s.Length; i++)
         {
-            map1.Enqueue(s[i]);
+            list1.Add(s[i]);
             if (dict1.ContainsKey(s[i]) == false)
                 dict1[s[i]] = new List<int>();
             dict1[s[i]].Add(i);
         }
 
-        Queue<char> map2 = new Queue<char>();
+        List<char> list2 = new List<char>();
         Dictionary<char, List<int>> dict2 = new Dictionary<char, List<int>>();
         for (int i = 0; i < t.Length; i++)
         {
-            map2.Enqueue(t[i]);
+            list2.Add(t[i]);
             if (dict2.ContainsKey(t[i]) == false)
                 dict2[t[i]] = new List<int>();
             dict2[t[i]].Add(i);
         }
 
-        if (map1.Count != map2.Count)
+        if (list1.Count != list2.Count)
             return false;
 
-        while (map1.Count > 0)
+        for (int i = 0; i < list1.Count; i++)
         {
-            char c1 = map1.Dequeue();
-            char c2 = map2.Dequeue();
+            char c1 = list1[i];
+            char c2 = list2[i];
 
             List<int> indexes1 = dict1[c1];
             List<int> indexes2 = dict2[c2];
@@ -46,9 +46,9 @@ public class Problem205
             if (indexes1.Count != indexes2.Count)
                 return false;
 
-            for (int i = 0; i < indexes1.Count; i++)
+            for (int j = 0; j < indexes1.Count; j++)
             {
-                if (indexes1[i] != indexes2[i])
+                if (indexes1[j] != indexes2[j])
                     return false;
             }
         }
