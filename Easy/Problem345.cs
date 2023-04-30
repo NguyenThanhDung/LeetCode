@@ -9,21 +9,26 @@ public class Problem345
 
     public string ReverseVowels(string s)
     {
-        Stack<char> reverseVowels = new Stack<char>();
-        for (int i = 0; i < s.Length; i++)
-            if (IsVowels(s[i]))
-                reverseVowels.Push(s[i]);
-
-        List<char> result = new List<char>();
+        List<char> reverse = new List<char>();
+        int j = s.Length - 1;
         for (int i = 0; i < s.Length; i++)
         {
             if (IsVowels(s[i]))
-                result.Add(reverseVowels.Pop());
+            {
+                while (j >= 0 && IsVowels(s[j]) == false)
+                    j--;
+                if (IsVowels(s[j]))
+                {
+                    reverse.Add(s[j]);
+                    j--;
+                }
+            }
             else
-                result.Add(s[i]);
+            {
+                reverse.Add(s[i]);
+            }
         }
-
-        return new string(result.ToArray());
+        return new string(reverse.ToArray());
     }
 
     private bool IsVowels(char c)
