@@ -2,9 +2,9 @@ public class Problem345
 {
     public Problem345()
     {
-        Console.WriteLine(ReverseVowels("hello"));      // holle
-        Console.WriteLine(ReverseVowels("leetcode"));   // leotcede
-        Console.WriteLine(ReverseVowels("a."));         // a.
+        Console.WriteLine(ReverseVowels("hello").Equals("holle"));
+        Console.WriteLine(ReverseVowels("leetcode").Equals("leotcede"));
+        Console.WriteLine(ReverseVowels("a.").Equals("a."));
     }
 
     public string ReverseVowels(string s)
