@@ -10,22 +10,32 @@ public class Problem013
     public int RomanToInt(string s)
     {
         int result = 0;
+        int lastNumber = -1;
+        int currentNumber = -1;
         for(int i = 0; i < s.Length; i++)
         {
-            int currentNumber = SymbolToInt(s[i]);
-            if(i < s.Length - 1)
+            currentNumber = SymbolToInt(s[i]);
+            if(lastNumber < 0)
             {
-                int nextNumber = SymbolToInt(s[i + 1]);
-                if(currentNumber < nextNumber)
-                    result -= currentNumber;
-                else
-                    result += currentNumber;
+                lastNumber = currentNumber;
             }
             else
             {
-                result += currentNumber;
+                if(lastNumber < currentNumber)
+                {
+                    result += currentNumber - lastNumber;
+                    lastNumber = -1;
+                    currentNumber = -1;
+                }
+                else
+                {
+                    result += lastNumber;
+                    lastNumber = currentNumber;
+                }
             }
         }
+        if(currentNumber > 0)
+            result += currentNumber;
         return result;
     }
 
