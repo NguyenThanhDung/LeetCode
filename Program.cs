@@ -1,4 +1,4 @@
-﻿#define PROBLEM_013
+﻿#define PROBLEM_039
 
 #if ALL || PROBLEM_001
 new Problem001();
@@ -14,6 +14,10 @@ new Problem013();
 
 #if ALL || PROBLEM_014
 new Problem014();
+#endif
+
+#if ALL || PROBLEM_039
+new Problem039();
 #endif
 
 #if ALL || PROBLEM_104
