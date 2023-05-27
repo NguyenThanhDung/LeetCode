@@ -35,6 +35,8 @@ public class Problem039
             if(indexes.Count > 0)
             {
                 index = indexes.Last() + 1;
+                if (index >= candidates.Length)
+                    continue;
                 indexes[indexes.Count - 1] = index;
                 combination[combination.Count - 1] = candidates[index];
                 sum = combination.Sum();
