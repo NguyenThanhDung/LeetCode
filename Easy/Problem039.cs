@@ -5,6 +5,7 @@ public class Problem039
         IList<IList<int>> result = CombinationSum(new int[]{2, 3, 6, 7}, 7);
         result = CombinationSum(new int[]{2, 3, 5}, 8);
         result = CombinationSum(new int[]{2}, 1);
+        result = CombinationSum(new int[]{2, 3}, 6);
         Console.WriteLine();
     }
 
@@ -36,7 +37,10 @@ public class Problem039
             {
                 index = indexes.Last() + 1;
                 if (index >= candidates.Length)
+                {
+                    sum = target + 1;
                     continue;
+                }
                 indexes[indexes.Count - 1] = index;
                 combination[combination.Count - 1] = candidates[index];
                 sum = combination.Sum();
