@@ -6,10 +6,13 @@ public class Problem039
         result = CombinationSum(new int[]{2, 3, 5}, 8);
         result = CombinationSum(new int[]{2}, 1);
         result = CombinationSum(new int[]{2, 3}, 6);
+        result = CombinationSum(new int[]{8, 7, 4, 3}, 11);
         Console.WriteLine();
     }
 
     public IList<IList<int>> CombinationSum(int[] candidates, int target) {
+        Array.Sort(candidates);
+
         List<IList<int>> result = new List<IList<int>>();
         List<int> indexes = new List<int>();
         List<int> combination = new List<int>();
