@@ -81,12 +81,14 @@ public class Problem039
                 index = indexes.Last() + 1;
                 if (index >= candidates.Length)
                 {
-                    sum = target + 1;
-                    continue;
+                    sum = int.MaxValue;
                 }
-                indexes[indexes.Count - 1] = index;
-                combination[combination.Count - 1] = candidates[index];
-                sum = combination.Sum();
+                else
+                {
+                    indexes[indexes.Count - 1] = index;
+                    combination[combination.Count - 1] = candidates[index];
+                    sum = combination.Sum();
+                }
             }
         }
         while(indexes.Count > 0);
