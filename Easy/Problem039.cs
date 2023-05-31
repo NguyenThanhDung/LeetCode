@@ -3,11 +3,33 @@ public class Problem039
     public Problem039()
     {
         IList<IList<int>> result = CombinationSum(new int[]{2, 3, 6, 7}, 7);
+        IList<IList<int>> expectation = new List<IList<int>>();
+        expectation.Add((new int[]{2, 2, 3}).ToList());
+        expectation.Add((new int[]{7}).ToList());
+        Console.WriteLine(Compare(result, expectation));
+
         result = CombinationSum(new int[]{2, 3, 5}, 8);
         result = CombinationSum(new int[]{2}, 1);
         result = CombinationSum(new int[]{2, 3}, 6);
         result = CombinationSum(new int[]{8, 7, 4, 3}, 11);
         Console.WriteLine();
+    }
+
+    public bool Compare(IList<IList<int>> list1, IList<IList<int>> list2)
+    {
+        if(list1.Count != list2.Count)
+            return false;
+        for(int i = 0; i < list1.Count; i++)
+        {
+            if(list1[i].Count != list2[i].Count)
+                return false;
+            for(int j = 0; j < list1[i].Count; j++)
+            {
+                if(list1[i][j] != list2[i][j])
+                    return false;
+            }
+        }
+        return true;
     }
 
     public IList<IList<int>> CombinationSum(int[] candidates, int target) {
