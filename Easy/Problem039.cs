@@ -9,10 +9,28 @@ public class Problem039
         Console.WriteLine(Compare(result, expectation));
 
         result = CombinationSum(new int[]{2, 3, 5}, 8);
+        expectation = new List<IList<int>>();
+        expectation.Add((new int[]{2, 2, 2, 2}).ToList());
+        expectation.Add((new int[]{2, 3, 3}).ToList());
+        expectation.Add((new int[]{3, 5}).ToList());
+        Console.WriteLine(Compare(result, expectation));
+
         result = CombinationSum(new int[]{2}, 1);
+        expectation = new List<IList<int>>();
+        Console.WriteLine(Compare(result, expectation));
+
         result = CombinationSum(new int[]{2, 3}, 6);
+        expectation = new List<IList<int>>();
+        expectation.Add((new int[]{2, 2, 2}).ToList());
+        expectation.Add((new int[]{3, 3}).ToList());
+        Console.WriteLine(Compare(result, expectation));
+
         result = CombinationSum(new int[]{8, 7, 4, 3}, 11);
-        Console.WriteLine();
+        expectation = new List<IList<int>>();
+        expectation.Add((new int[]{3, 4, 4}).ToList());
+        expectation.Add((new int[]{3, 8}).ToList());
+        expectation.Add((new int[]{4, 7}).ToList());
+        Console.WriteLine(Compare(result, expectation));
     }
 
     public bool Compare(IList<IList<int>> list1, IList<IList<int>> list2)
