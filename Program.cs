@@ -8,6 +8,10 @@ new Problem001();
 new Problem009();
 #endif
 
+#if ALL || PROBLEM_013
+new Problem013();
+#endif
+
 #if ALL || PROBLEM_014
 new Problem014();
 #endif
@@ -16,8 +20,24 @@ new Problem014();
 new Problem104();
 #endif
 
+#if ALL || PROBLEM_205
+new Problem205();
+#endif
+
 #if ALL || PROBLEM_211
 new Problem211();
+#endif
+
+#if ALL || PROBLEM_290
+new Problem290();
+#endif
+
+#if ALL || PROBLEM_344
+new Problem344();
+#endif
+
+#if ALL || PROBLEM_345
+new Problem345();
 #endif
 
 #if ALL || PROBLEM_745
@@ -50,6 +70,10 @@ new Problem1345();
 
 #if ALL || PROBLEM_1379
 new Problem1379();
+#endif
+
+#if ALL || PROBLEM_2016
+new Problem2016();
 #endif
 
 #if ALL || PROBLEM_2423
