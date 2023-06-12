@@ -11,7 +11,7 @@ public class Problem1345
     {
         List<int>[] jumpableSteps = GetJumpablePositions(arr);
         Stack<int> steps = new Stack<int>();
-        return JumpRecursively(arr, 0, steps, jumpableSteps, arr.Length);
+        return JumpRecursively(arr, 0, steps, jumpableSteps, arr.Length) - 1;
     }
 
     private int JumpRecursively(int[] arr, int index, Stack<int> steps, List<int>[] jumpableSteps, int minStepCount)
