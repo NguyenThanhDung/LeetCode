@@ -1,5 +1,8 @@
-  0    1    2    3    4    5   6   7   8  9
-{ 100, -23, -23, 404, 100, 23, 23, 23, 3, 404 }
+index                       0       1       2       3       4       5           6       7       8       9
+array                   {   100,    -23,    -23,    404,    100,    23,         23,     23,     3,      404 }
+ minForwardStepsToDest      8       7       6       5       4       3           2       1       0                       // If jump forward, how many remaining steps to reach the destination
+minBackwardStepsToDest      8       8       7       6       5       4           3       2       1                       // If jump backward, how many remaining steps to reach the destination
+minJumpableStepsToDest      {4:5}   {2:7}   {1:8}   {9:0}   {0:9}   {6:3, 7:2}  {5:3,7:1}      []      []                 // If jump to this position, how many remaining steps to reach the destination
 
 i0:100
     i1:-23
@@ -11,7 +14,14 @@ i0:100
                             i7:23
                                 i8:3
                                     i9:404  -> End
-                                i7:23 -> Dup
+                                    i7 -> Dup
+                                    []
+                                i6:23 -> Dup
+                                i5:23 -> Dup
+                            i5 -> Dup
+                            i5 -> Dup Jump
+                            i7
+                        i4 -> Dup
                 i9:404 -> End
     i4:100
         i3:404
