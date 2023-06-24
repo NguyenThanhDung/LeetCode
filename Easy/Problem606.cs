@@ -21,8 +21,13 @@ public class Problem606
         if(root == null)
             return "";
         string output = root.val.ToString();
-        output += "(" + Tree2str(root.left) + ")";
-        output += "(" + Tree2str(root.right) + ")";
+        
+        if(root.left != null || (root.left == null && root.right != null))
+            output += "(" + Tree2str(root.left) + ")";
+
+        if(root.right != null)
+            output += "(" + Tree2str(root.right) + ")";
+
         return output;
     }
 }
