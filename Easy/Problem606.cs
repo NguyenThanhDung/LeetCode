@@ -6,16 +6,23 @@ public class Problem606
         Queue<Object> treeQueue = new Queue<Object>(treeArray);
         Tree tree = new Tree();
         tree.Insert(treeQueue);
+        Console.WriteLine(Tree2str(tree.Root));
         tree.Clear();
 
         treeArray = new Object[]{1, 2, 3, null, 4};
         treeQueue = new Queue<Object>(treeArray);
         tree.Insert(treeQueue);
+        Console.WriteLine(Tree2str(tree.Root));
         tree.Clear();
     }
 
     public string Tree2str(TreeNode root)
     {
-        return null;
+        if(root == null)
+            return "";
+        string output = root.val.ToString();
+        output += "(" + Tree2str(root.left) + ")";
+        output += "(" + Tree2str(root.right) + ")";
+        return output;
     }
 }
