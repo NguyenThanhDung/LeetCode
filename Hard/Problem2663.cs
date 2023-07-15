@@ -10,11 +10,14 @@ public class Problem2663
 
     public string SmallestBeautifulString(string s, int k)
     {
+        char lastChar = (char)(((int)'a') + k - 1);
+        string lastString = new String(lastChar, s.Length);
+
         do
         {
             s = IncreaseOneUnit(s, k);
-        } while (IsBeautiful(s) == false || s.Equals("") == false);
-        return s;
+        } while (IsBeautiful(s) == false && s.Equals(lastString) == false);
+        return s.Equals(lastString) ? "" : s;
     }
 
     private string IncreaseOneUnit(string s, int k)
@@ -24,7 +27,8 @@ public class Problem2663
         for (int i = s.Length - 1; i >= 0; i--)
         {
             char nextChar = (char)(((int)s[i]) + (shouldIncrease ? 1 : 0));
-            if (nextChar - 'a' > k)
+            int charIndex = nextChar - 'a';
+            if (charIndex >= k)
             {
                 nextChar = 'a';
                 shouldIncrease = true;
