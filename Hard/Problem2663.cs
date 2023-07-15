@@ -6,6 +6,7 @@ public class Problem2663
     {
         Console.WriteLine(SmallestBeautifulString("abcz", 26).Equals("abda"));
         Console.WriteLine(SmallestBeautifulString("dc", 4).Equals(""));
+        Console.WriteLine(SmallestBeautifulString("ced", 6).Equals("cef"));
     }
 
     public string SmallestBeautifulString(string s, int k)
