@@ -8,6 +8,7 @@ public class Problem2663
         Console.WriteLine(SmallestBeautifulString("dc", 4).Equals(""));
         Console.WriteLine(SmallestBeautifulString("ced", 6).Equals("cef"));
         Console.WriteLine(SmallestBeautifulString("cegaf", 7).Equals("cegba"));
+        Console.WriteLine(SmallestBeautifulString("e", 6).Equals("f"));
     }
 
     public string SmallestBeautifulString(string s, int k)
@@ -15,11 +16,13 @@ public class Problem2663
         char lastChar = (char)(((int)'a') + k - 1);
         string lastString = new String(lastChar, s.Length);
 
+        bool isBeautiful = false;
         do
         {
             s = IncreaseOneUnit(s, k);
-        } while (IsBeautiful(s) == false && s.Equals(lastString) == false);
-        return s.Equals(lastString) ? "" : s;
+            isBeautiful = IsBeautiful(s);
+        } while (isBeautiful == false && s.Equals(lastString) == false);
+        return isBeautiful ? s : "";
     }
 
     private string IncreaseOneUnit(string s, int k)
