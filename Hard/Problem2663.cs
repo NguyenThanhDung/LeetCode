@@ -7,6 +7,7 @@ public class Problem2663
         Console.WriteLine(SmallestBeautifulString("abcz", 26).Equals("abda"));
         Console.WriteLine(SmallestBeautifulString("dc", 4).Equals(""));
         Console.WriteLine(SmallestBeautifulString("ced", 6).Equals("cef"));
+        Console.WriteLine(SmallestBeautifulString("cegaf", 7).Equals("cegba"));
     }
 
     public string SmallestBeautifulString(string s, int k)
@@ -47,7 +48,21 @@ public class Problem2663
     {
         for (int i = 0; i < s.Length - 1; i++)
         {
-            if (s[i] == s[i + 1])
+            for (int j = i + 1; j < s.Length; j++)
+            {
+                string subString = s.Substring(i, j - i + 1);
+                if (IsPalindrome(subString))
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    private bool IsPalindrome(string s)
+    {
+        for (int i = 0, j = s.Length - 1; i < j; i++, j--)
+        {
+            if (s[i] != s[j])
                 return false;
         }
         return true;
