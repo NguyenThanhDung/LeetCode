@@ -9,6 +9,7 @@ public class Problem2663
         Console.WriteLine(SmallestBeautifulString("ced", 6).Equals("cef"));
         Console.WriteLine(SmallestBeautifulString("cegaf", 7).Equals("cegba"));
         Console.WriteLine(SmallestBeautifulString("e", 6).Equals("f"));
+        Console.WriteLine(SmallestBeautifulString("e", 5).Equals(""));
     }
 
     public string SmallestBeautifulString(string s, int k)
@@ -17,11 +18,14 @@ public class Problem2663
         string lastString = new String(lastChar, s.Length);
 
         bool isBeautiful = false;
-        do
+        while (s.Equals(lastString) == false)
         {
             s = IncreaseOneUnit(s, k);
             isBeautiful = IsBeautiful(s);
-        } while (isBeautiful == false && s.Equals(lastString) == false);
+            if (isBeautiful)
+                break;
+        }
+
         return isBeautiful ? s : "";
     }
 
