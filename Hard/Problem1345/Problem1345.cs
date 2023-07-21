@@ -12,35 +12,38 @@ public class Problem1345
         List<int>[] jumpablePositions = GetJumpablePositions(arr);
         Queue<int> queue = new Queue<int>();
         bool[] isVisited = new bool[arr.Length];
+        isVisited[0] = true;
         queue.Enqueue(0);
-        int currentDistance = 0;
         int[] distances = new int[arr.Length];
+        Array.Fill(distances, int.MaxValue);
+        distances[0] = 0;
         while (queue.Count > 0)
         {
             int index = queue.Dequeue();
             if (index == arr.Length - 1)
-                return currentDistance;
-            distances[index] = currentDistance;
+                return distances[index];
             if (index > 0 && isVisited[index - 1] == false)
             {
                 isVisited[index - 1] = true;
                 queue.Enqueue(index - 1);
+                distances[index - 1] = distances[index] + 1;
             }
             if (index < arr.Length - 1 && isVisited[index + 1] == false)
             {
                 isVisited[index + 1] = true;
                 queue.Enqueue(index + 1);
+                distances[index + 1] = distances[index] + 1;
             }
             List<int> jumpablePositionsOfIndex = jumpablePositions[index];
             foreach (int pos in jumpablePositionsOfIndex)
             {
-                if (isVisited[pos])
+                if (isVisited[pos] == false)
                 {
                     isVisited[pos] = true;
                     queue.Enqueue(pos);
+                    distances[pos] = distances[index] + 1;
                 }
             }
-            currentDistance++;
         }
         return distances[arr.Length - 1];
     }
