@@ -15,7 +15,6 @@ public class Problem1345
         isVisited[0] = true;
         queue.Enqueue(0);
         int[] distances = new int[arr.Length];
-        Array.Fill(distances, int.MaxValue);
         distances[0] = 0;
         while (queue.Count > 0)
         {
