@@ -6,6 +6,9 @@ public class Problem1282
     {
         IList<IList<int>> result = GroupThePeople(new int[] { 3, 3, 3, 3, 3, 1, 3 });
         Console.WriteLine(FormatResult(result));
+
+        result = GroupThePeople(new int[] { 2, 1, 3, 3, 3, 2 });
+        Console.WriteLine(FormatResult(result));
     }
 
     public IList<IList<int>> GroupThePeople(int[] groupSizes)
