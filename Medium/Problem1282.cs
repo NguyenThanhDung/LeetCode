@@ -63,14 +63,18 @@ public class Problem1282
     {
         StringBuilder sb = new StringBuilder();
         sb.Append("[");
-        foreach(IList<int> list in result)
+        for (int i = 0; i < result.Count; i++)
         {
             sb.Append("[");
-            foreach(int num in list)
+            for (int j = 0; j < result[i].Count; j++)
             {
-                sb.Append(num + ",");
+                sb.Append(result[i][j]);
+                if (j < result[i].Count - 1)
+                    sb.Append(",");
             }
-            sb.Append("],");
+            sb.Append("]");
+            if (i < result.Count - 1)
+                sb.Append(",");
         }
         sb.Append("]");
         return sb.ToString();
