@@ -76,3 +76,26 @@ public class Problem1282
         return sb.ToString();
     }
 }
+
+
+// groupSizes = [3,3,3,3,3,1,3]
+//
+// i   groupSizes[i]   groups
+// 0   3               [[0,_,_]]                   -> No size-3 group existed, create a size-3 group, add i into that group
+// 1   3               [[0,1,_]]                   -> Size-3 group existed, add i into that group
+// 2   3               [[0,1,2]]                   -> Size-3 group existed, add i into that group
+// 3   3               [[0,1,2], [3,_,_]]          -> All size-3 groups are full, create a size-3 group, add i into that group
+// 4   3               [[0,1,2], [3,4,_]]          -> Size-3 group existed, add i into that group
+// 5   1               [[0,1,2], [3,4,_], [5]]     -> No size-1 group existed, create a size-1 group, add i into that group
+// 6   3               [[0,1,2], [3,4,6], [5]]     -> Size-3 group existed, add i into that group
+//
+//
+// groupSizes = [2,1,3,3,3,2]
+//
+// i   groupSizes[i]   groups
+// 0   2               [[0,_]]                       -> No size-2 group existed, create a size-2 group, add i into that group
+// 1   1               [[0,_],[1]]                   -> No size-1 group existed, create a size-1 group, add i into that group
+// 2   3               [[0,_],[1],[2,_,_]]           -> No size-3 group existed, create a size-3 group, add i into that group
+// 3   3               [[0,_],[1],[2,3,_]]           -> Size-3 group existed, add i into that group
+// 4   3               [[0,_],[1],[2,3,4]]           -> Size-3 group existed, add i into that group
+// 5   2               [[0,5],[1],[2,3,4]]           -> Size-2 group existed, add i into that group
