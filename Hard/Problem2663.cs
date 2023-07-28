@@ -14,24 +14,33 @@ public class Problem2663
 
     public string SmallestBeautifulString(string s, int k)
     {
+        char[] charArray = s.ToCharArray();
         char lastChar = (char)(((int)'a') + k - 1);
-        string lastString = new String(lastChar, s.Length);
 
         bool isBeautiful = false;
-        while (s.Equals(lastString) == false)
+        while (IsLastString(charArray, lastChar) == false)
         {
-            s = NextLexicographicalString(s, k);
-            isBeautiful = IsBeautiful(s);
+            NextLexicographicalString(charArray, k);
+            isBeautiful = IsBeautiful(charArray);
             if (isBeautiful)
                 break;
         }
 
-        return isBeautiful ? s : "";
+        return isBeautiful ? new String(charArray) : "";
     }
 
-    private string NextLexicographicalString(string s, int k)
+    private bool IsLastString(char[] charArray, char lastChar)
     {
-        char[] charArray = s.ToCharArray();
+        for(int i = 0; i < charArray.Length; i++)
+        {
+            if(charArray[i] != lastChar)
+                return false;
+        }
+        return true;
+    }
+
+    private void NextLexicographicalString(char[] charArray, int k)
+    {
         bool shouldIncrease = true;
         for (int i = charArray.Length - 1; i >= 0; i--)
         {
@@ -48,21 +57,20 @@ public class Problem2663
             }
             charArray[i] = nextChar;
         }
-        return new String(charArray);
     }
 
-    private bool IsBeautiful(string s)
+    private bool IsBeautiful(char[] charArray)
     {
-        for (int i = 0; i < s.Length - 1; i++)
+        for (int i = 0; i < charArray.Length - 1; i++)
         {
-            for (int j = i + 1; j < s.Length; j++)
+            for (int j = i + 1; j < charArray.Length; j++)
             {
-                if (s[i] == s[j])
+                if (charArray[i] == charArray[j])
                 {
                     bool isPalindrome = true;
                     for (int k = i + 1, l = j - 1; k < l; k++, l--)
                     {
-                        if (s[k] != s[l])
+                        if (charArray[k] != charArray[l])
                             isPalindrome = false;
                     }
                     if (isPalindrome)
