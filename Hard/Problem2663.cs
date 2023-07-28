@@ -57,20 +57,18 @@ public class Problem2663
         {
             for (int j = i + 1; j < s.Length; j++)
             {
-                string subString = s.Substring(i, j - i + 1);
-                if (IsPalindrome(subString))
-                    return false;
+                if (s[i] == s[j])
+                {
+                    bool isPalindrome = true;
+                    for (int k = i + 1, l = j - 1; k < l; k++, l--)
+                    {
+                        if (s[k] != s[l])
+                            isPalindrome = false;
+                    }
+                    if (isPalindrome)
+                        return false;
+                }
             }
-        }
-        return true;
-    }
-
-    private bool IsPalindrome(string s)
-    {
-        for (int i = 0, j = s.Length - 1; i < j; i++, j--)
-        {
-            if (s[i] != s[j])
-                return false;
         }
         return true;
     }
