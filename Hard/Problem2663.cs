@@ -20,7 +20,7 @@ public class Problem2663
         bool isBeautiful = false;
         while (s.Equals(lastString) == false)
         {
-            s = IncreaseOneUnit(s, k);
+            s = NextLexicographicalString(s, k);
             isBeautiful = IsBeautiful(s);
             if (isBeautiful)
                 break;
@@ -29,13 +29,13 @@ public class Problem2663
         return isBeautiful ? s : "";
     }
 
-    private string IncreaseOneUnit(string s, int k)
+    private string NextLexicographicalString(string s, int k)
     {
-        StringBuilder sbResult = new StringBuilder();
+        char[] charArray = s.ToCharArray();
         bool shouldIncrease = true;
-        for (int i = s.Length - 1; i >= 0; i--)
+        for (int i = charArray.Length - 1; i >= 0; i--)
         {
-            char nextChar = (char)(((int)s[i]) + (shouldIncrease ? 1 : 0));
+            char nextChar = (char)(((int)charArray[i]) + (shouldIncrease ? 1 : 0));
             int charIndex = nextChar - 'a';
             if (charIndex >= k)
             {
@@ -46,9 +46,9 @@ public class Problem2663
             {
                 shouldIncrease = false;
             }
-            sbResult.Insert(0, nextChar);
+            charArray[i] = nextChar;
         }
-        return sbResult.ToString();
+        return new String(charArray);
     }
 
     private bool IsBeautiful(string s)
