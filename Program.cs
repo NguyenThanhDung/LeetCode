@@ -2,7 +2,8 @@
 {
     public static void Main()
     {
-        String className = "Problem1282";
+        int problemNumber = 1282;
+        String className = problemNumber < 1000 ? String.Format("Problem{0,3:D3}", problemNumber) : "Problem" + problemNumber;
         try
         {
             Type type = Type.GetType(className);
