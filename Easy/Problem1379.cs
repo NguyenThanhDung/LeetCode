@@ -5,7 +5,7 @@ public class Problem1379
 {
     public Problem1379()
     {
-        Queue<Object> vals = new Queue<Object>();
+        Queue<int?> vals = new Queue<int?>();
         vals.Enqueue(7);
         vals.Enqueue(4);
         vals.Enqueue(3);
