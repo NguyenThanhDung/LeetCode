@@ -13,13 +13,13 @@ public class Problem226
 
     public TreeNode InvertTree(TreeNode root)
     {
+        if (root == null)
+            return root;
         TreeNode temp = root.left;
         root.left = root.right;
         root.right = temp;
-        if (root.left != null)
-            InvertTree(root.left);
-        if (root.right != null)
-            InvertTree(root.right);
+        InvertTree(root.left);
+        InvertTree(root.right);
         return root;
     }
 }
