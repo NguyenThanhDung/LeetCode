@@ -11,10 +11,7 @@ public class Tree
 
     public Tree(IList<int?> values)
     {
-        Queue<int?> queue = new Queue<int?>();
-        foreach(var value in values)
-            queue.Enqueue(value);
-        Insert(queue);
+        Insert(values);
     }
 
     public TreeNode Root
@@ -25,19 +22,21 @@ public class Tree
         }
     }
 
-    public void Insert(Queue<int?> values)
+    public void Insert(IList<int?> values)
     {
         if (values == null || values.Count == 0)
             return;
 
+        int currentIndex = 0;
         if (root == null)
         {
-            var value = values.Dequeue();
+            var value = values[currentIndex];
             if (value.HasValue)
                 root = new TreeNode(value.Value);
             else
                 return;
         }
+        currentIndex++;
 
         Queue<TreeNode> queue = new Queue<TreeNode>();
         queue.Enqueue(root);
@@ -46,25 +45,27 @@ public class Tree
         {
             TreeNode node = queue.Dequeue();
 
-            if (values.Count > 0 && node.left == null)
+            if (currentIndex < values.Count && node.left == null)
             {
-                var value = values.Dequeue();
+                var value = values[currentIndex];
                 if (value.HasValue)
                 {
                     node.left = new TreeNode(value.Value);
                     queue.Enqueue(node.left);
                 }
             }
+            currentIndex++;
 
-            if (values.Count > 0 && node.right == null)
+            if (currentIndex < values.Count && node.right == null)
             {
-                var value = values.Dequeue();
+                var value = values[currentIndex];
                 if (value.HasValue)
                 {
                     node.right = new TreeNode(value.Value);
                     queue.Enqueue(node.right);
                 }
             }
+            currentIndex++;
         }
     }
 

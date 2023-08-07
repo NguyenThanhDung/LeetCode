@@ -3,15 +3,13 @@ public class Problem606
     public Problem606()
     {
         int?[] treeArray = new int?[]{1, 2, 3, 4};
-        Queue<int?> treeQueue = new Queue<int?>(treeArray);
         Tree tree = new Tree();
-        tree.Insert(treeQueue);
+        tree.Insert(treeArray);
         Console.WriteLine(Tree2str(tree.Root));
         tree.Clear();
 
         treeArray = new int?[]{1, 2, 3, null, 4};
-        treeQueue = new Queue<int?>(treeArray);
-        tree.Insert(treeQueue);
+        tree.Insert(treeArray);
         Console.WriteLine(Tree2str(tree.Root));
         tree.Clear();
     }
