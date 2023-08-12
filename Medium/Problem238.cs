@@ -8,8 +8,6 @@ public class Problem238
 
     public int[] ProductExceptSelf(int[] nums)
     {
-        int[] answer = new int[nums.Length];
-
         int product = 1;
         int zeroCount = 0;
         foreach (var n in nums)
@@ -20,23 +18,23 @@ public class Problem238
                 product *= n;
         }
 
-        for (int i = 0; i < answer.Length; i++)
+        for (int i = 0; i < nums.Length; i++)
         {
             if (zeroCount >= 2)
-                answer[i] = 0;
+                nums[i] = 0;
             else if (zeroCount == 1)
             {
                 if (nums[i] == 0)
-                    answer[i] = product;
+                    nums[i] = product;
                 else
-                    answer[i] = 0;
+                    nums[i] = 0;
             }
             else
             {
-                answer[i] = product / nums[i];
+                nums[i] = product / nums[i];
             }
         }
 
-        return answer;
+        return nums;
     }
 }
