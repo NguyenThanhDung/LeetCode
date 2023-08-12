@@ -8,21 +8,26 @@ public class Problem128
 
     public int LongestConsecutive(int[] nums)
     {
-        Dictionary<int, int> dict = new Dictionary<int, int>();
+        Dictionary<int, int> processedNums = new Dictionary<int, int>();
+        Dictionary<int, int> ranges = new Dictionary<int, int>();
         foreach (var n in nums)
         {
-            int minOfPossibleSequence = n - nums.Length + 1;
-            int maxOfPossibleSequence = n + nums.Length - 1;
-            for (int i = minOfPossibleSequence; i <= maxOfPossibleSequence; i++)
+            if (!processedNums.ContainsKey(n))
             {
-                if (dict.ContainsKey(i))
-                    dict[i]++;
-                else
-                    dict.Add(i, 1);
+                processedNums.Add(n, 0);
+                int minOfPossibleSequence = n - nums.Length + 1;
+                int maxOfPossibleSequence = n + nums.Length - 1;
+                for (int i = minOfPossibleSequence; i <= maxOfPossibleSequence; i++)
+                {
+                    if (ranges.ContainsKey(i))
+                        ranges[i]++;
+                    else
+                        ranges.Add(i, 1);
+                }
             }
         }
         int maxValue = int.MinValue;
-        foreach (var pair in dict)
+        foreach (var pair in ranges)
         {
             if (pair.Value > maxValue)
                 maxValue = pair.Value;
