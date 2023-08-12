@@ -8,6 +8,8 @@ public class Problem128
 
     public int LongestConsecutive(int[] nums)
     {
+        if(nums.Length == 0)
+            return 0;
         Dictionary<int, int> processedNums = new Dictionary<int, int>();
         Dictionary<int, int> ranges = new Dictionary<int, int>();
         foreach (var n in nums)
