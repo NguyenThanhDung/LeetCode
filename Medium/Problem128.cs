@@ -21,13 +21,10 @@ public class Problem128
         {
             if (distinctNums.Contains(n - 1))
                 continue;
-            int sequenceLength = 1;
-            int nextNum = n + 1;
-            while (distinctNums.Contains(nextNum))
-            {
-                nextNum++;
-                sequenceLength++;
-            }
+            int lastNum = n + 1;
+            while (distinctNums.Contains(lastNum))
+                lastNum++;
+            int sequenceLength = lastNum - n;
             if (maxSequenceLength < sequenceLength)
                 maxSequenceLength = sequenceLength;
         }
