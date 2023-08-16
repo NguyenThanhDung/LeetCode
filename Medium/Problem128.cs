@@ -16,25 +16,21 @@ public class Problem128
                 distinctNums.Add(n);
         }
 
-        Dictionary<int, int> ranges = new Dictionary<int, int>();
+        int maxSequenceLength = 0;
         foreach (var n in distinctNums)
         {
-            int minOfPossibleSequence = n - distinctNums.Count + 1;
-            int maxOfPossibleSequence = n + distinctNums.Count - 1;
-            for (int i = minOfPossibleSequence; i <= maxOfPossibleSequence; i++)
+            if (distinctNums.Contains(n - 1))
+                continue;
+            int sequenceLength = 1;
+            int nextNum = n + 1;
+            while (distinctNums.Contains(nextNum))
             {
-                if (ranges.ContainsKey(i))
-                    ranges[i]++;
-                else
-                    ranges.Add(i, 1);
+                nextNum++;
+                sequenceLength++;
             }
+            if (maxSequenceLength < sequenceLength)
+                maxSequenceLength = sequenceLength;
         }
-        int maxValue = int.MinValue;
-        foreach (var pair in ranges)
-        {
-            if (pair.Value > maxValue)
-                maxValue = pair.Value;
-        }
-        return maxValue;
+        return maxSequenceLength;
     }
 }
