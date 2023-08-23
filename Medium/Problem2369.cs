@@ -43,7 +43,8 @@ public class Problem2369
         currentLengths.Add(size);
         if (remaining == 0)
         {
-            lengths.Add(currentLengths);
+            var validLengths = new List<int>(currentLengths);
+            lengths.Add(validLengths);
         }
         else
         {
