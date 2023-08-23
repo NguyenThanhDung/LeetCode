@@ -14,12 +14,18 @@ public class Problem2369
         foreach (var possibleSubArrayLength in possibleSubArrayLengths)
         {
             int currentIndex = 0;
+            bool isValid = true;
             foreach (var length in possibleSubArrayLength)
             {
                 var subArray = new int[length];
                 Array.Copy(nums, currentIndex, subArray, 0, length);
+                isValid = IsValid(subArray);
+                if (!isValid)
+                    break;
                 currentIndex += length;
             }
+            if (isValid)
+                return true;
         }
         return false;
     }
@@ -51,5 +57,24 @@ public class Problem2369
             FindPossibleSubArrayLengthsRecursively(remaining, lengths, currentLengths, 3);
         }
         currentLengths.RemoveAt(currentLengths.Count - 1);
+    }
+
+    private bool IsValid(int[] array)
+    {
+        if (array.Length == 2)
+        {
+            return array[0] == array[1];
+        }
+        else if (array.Length == 3)
+        {
+            if (array[0] == array[1] && array[0] == array[2])
+                return true;
+            else
+                return (array[0] + 1) == array[1] && (array[1] + 1) == array[2];
+        }
+        else
+        {
+            return false;
+        }
     }
 }
