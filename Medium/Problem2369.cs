@@ -13,14 +13,13 @@ public class Problem2369
         var possibleSubArrayLengths = FindPossibleSubArrayLengths(nums.Length);
         foreach (var possibleSubArrayLength in possibleSubArrayLengths)
         {
-            var sb = new StringBuilder();
-            sb.Append("[");
+            int currentIndex = 0;
             foreach (var length in possibleSubArrayLength)
             {
-                sb.Append(length + " ");
+                var subArray = new int[length];
+                Array.Copy(nums, currentIndex, subArray, 0, length);
+                currentIndex += length;
             }
-            sb.Append("]");
-            Console.WriteLine(sb.ToString());
         }
         return false;
     }
