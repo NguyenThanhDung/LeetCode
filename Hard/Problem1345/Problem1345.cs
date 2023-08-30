@@ -8,7 +8,14 @@ public class Problem1345
         Console.WriteLine(MinJumps(new int[] { 7 }) == 0);
         Console.WriteLine(MinJumps(new int[] { 7, 6, 9, 6, 9, 6, 9, 7 }) == 1);
 
-        var filePath = Path.Join(Directory.GetCurrentDirectory(), "Hard", "Problem1345", "data2.txt");
+        ExecuteFromFile("data1.txt");
+        ExecuteFromFile("data2.txt");
+        ExecuteFromFile("data3.txt");
+    }
+
+    private void ExecuteFromFile(string fileName)
+    {
+        var filePath = Path.Join(Directory.GetCurrentDirectory(), "Hard", "Problem1345", fileName);
         var lines = File.ReadAllLines(filePath);
         var intArray = new int[lines.Length];
         int intValue = 0;
