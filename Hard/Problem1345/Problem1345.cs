@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 public class Problem1345
 {
     public Problem1345()
@@ -15,7 +17,11 @@ public class Problem1345
             if (Int32.TryParse(lines[i], out intValue))
                 intArray[i] = intValue;
         }
-        Console.WriteLine("");
+        var watch = new Stopwatch();
+        watch.Start();
+        var result = MinJumps(intArray);
+        watch.Stop();
+        Console.WriteLine("Result: {0}. Execution Time: {1}", result, watch.ElapsedMilliseconds);
     }
 
     public int MinJumps(int[] arr)
