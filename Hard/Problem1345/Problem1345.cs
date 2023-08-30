@@ -57,14 +57,15 @@ public class Problem1345
                 queue.Enqueue(index + 1);
                 distances[index + 1] = distances[index] + 1;
             }
-            var jumpablePositionsOfValue = jumpablePositions[arr[index]];
-            foreach (int pos in jumpablePositionsOfValue)
+            var positions = jumpablePositions[arr[index]];
+            for (int i = positions.Count - 1; i >= 0; i--)
             {
-                if (isVisited[pos] == false)
+                if (isVisited[positions[i]] == false)
                 {
-                    isVisited[pos] = true;
-                    queue.Enqueue(pos);
-                    distances[pos] = distances[index] + 1;
+                    isVisited[positions[i]] = true;
+                    queue.Enqueue(positions[i]);
+                    distances[positions[i]] = distances[index] + 1;
+                    positions.RemoveAt(i);
                 }
             }
         }
