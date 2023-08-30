@@ -26,7 +26,7 @@ public class Problem1345
 
     public int MinJumps(int[] arr)
     {
-        List<int>[] jumpablePositions = GetJumpablePositions(arr);
+        var jumpablePositions = GetJumpablePositions(arr);
         Queue<int> queue = new Queue<int>();
         bool[] isVisited = new bool[arr.Length];
         isVisited[0] = true;
@@ -50,8 +50,8 @@ public class Problem1345
                 queue.Enqueue(index + 1);
                 distances[index + 1] = distances[index] + 1;
             }
-            List<int> jumpablePositionsOfIndex = jumpablePositions[index];
-            foreach (int pos in jumpablePositionsOfIndex)
+            var jumpablePositionsOfValue = jumpablePositions[arr[index]];
+            foreach (int pos in jumpablePositionsOfValue)
             {
                 if (isVisited[pos] == false)
                 {
@@ -64,18 +64,21 @@ public class Problem1345
         return distances[arr.Length - 1];
     }
 
-    public List<int>[] GetJumpablePositions(int[] arr)
+    public Dictionary<int, List<int>> GetJumpablePositions(int[] arr)
     {
-        List<int>[] jumpablePosstions = new List<int>[arr.Length];
+        var jumpablePosstionsDict = new Dictionary<int, List<int>>();
         for (int i = 0; i < arr.Length; i++)
         {
-            jumpablePosstions[i] = new List<int>();
-            for (int j = 0; j < arr.Length; j++)
+            if (jumpablePosstionsDict.ContainsKey(arr[i]))
             {
-                if (i != j && arr[i] == arr[j])
-                    jumpablePosstions[i].Add(j);
+                var jumpablePosstions = jumpablePosstionsDict[arr[i]];
+                jumpablePosstions.Add(i);
+            }
+            else
+            {
+                jumpablePosstionsDict.Add(arr[i], (new int[] { i }).ToList());
             }
         }
-        return jumpablePosstions;
+        return jumpablePosstionsDict;
     }
 }
