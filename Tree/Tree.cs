@@ -9,6 +9,11 @@ public class Tree
         root = null;
     }
 
+    public Tree(IList<int?> values)
+    {
+        Insert(values);
+    }
+
     public TreeNode Root
     {
         get
@@ -17,19 +22,21 @@ public class Tree
         }
     }
 
-    public void Insert(Queue<Object> values)
+    public void Insert(IList<int?> values)
     {
         if (values == null || values.Count == 0)
             return;
 
+        int currentIndex = 0;
         if (root == null)
         {
-            Object value = values.Dequeue();
-            if (value != null)
-                root = new TreeNode((int)value);
+            var value = values[currentIndex];
+            if (value.HasValue)
+                root = new TreeNode(value.Value);
             else
                 return;
         }
+        currentIndex++;
 
         Queue<TreeNode> queue = new Queue<TreeNode>();
         queue.Enqueue(root);
@@ -38,25 +45,27 @@ public class Tree
         {
             TreeNode node = queue.Dequeue();
 
-            if (values.Count > 0 && node.left == null)
+            if (currentIndex < values.Count && node.left == null)
             {
-                Object value = values.Dequeue();
-                if (value != null)
+                var value = values[currentIndex];
+                if (value.HasValue)
                 {
-                    node.left = new TreeNode((int)value);
+                    node.left = new TreeNode(value.Value);
                     queue.Enqueue(node.left);
                 }
             }
+            currentIndex++;
 
-            if (values.Count > 0 && node.right == null)
+            if (currentIndex < values.Count && node.right == null)
             {
-                Object value = values.Dequeue();
-                if (value != null)
+                var value = values[currentIndex];
+                if (value.HasValue)
                 {
-                    node.right = new TreeNode((int)value);
+                    node.right = new TreeNode(value.Value);
                     queue.Enqueue(node.right);
                 }
             }
+            currentIndex++;
         }
     }
 

@@ -2,16 +2,14 @@ public class Problem606
 {
     public Problem606()
     {
-        Object[] treeArray = new Object[]{1, 2, 3, 4};
-        Queue<Object> treeQueue = new Queue<Object>(treeArray);
+        int?[] treeArray = new int?[]{1, 2, 3, 4};
         Tree tree = new Tree();
-        tree.Insert(treeQueue);
+        tree.Insert(treeArray);
         Console.WriteLine(Tree2str(tree.Root));
         tree.Clear();
 
-        treeArray = new Object[]{1, 2, 3, null, 4};
-        treeQueue = new Queue<Object>(treeArray);
-        tree.Insert(treeQueue);
+        treeArray = new int?[]{1, 2, 3, null, 4};
+        tree.Insert(treeArray);
         Console.WriteLine(Tree2str(tree.Root));
         tree.Clear();
     }
