@@ -12,8 +12,7 @@ public class Problem067
     public string AddBinary(string a, string b)
     {
         var r = new int[Math.Max(a.Length, b.Length) + 1];
-        int k = 0;
-        for (int i = a.Length - 1, j = b.Length - 1; i >= 0 || j >= 0; i--, j--, k++)
+        for (int i = a.Length - 1, j = b.Length - 1, k = 0; i >= 0 || j >= 0; i--, j--, k++)
         {
             int sum = CharToInt(TryToGet(a, i)) + CharToInt(TryToGet(b, j)) + r[k];
             r[k] = sum > 1 ? (sum - 2) : sum;
