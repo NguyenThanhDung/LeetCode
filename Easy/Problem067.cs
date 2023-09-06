@@ -1,3 +1,5 @@
+using System.Text;
+
 public class Problem067
 {
     public Problem067()
@@ -18,7 +20,7 @@ public class Problem067
             mem = sum > 1 ? 1 : 0;
         }
         r[k] = mem;
-        return "";
+        return ArrayToString(r);
     }
 
     private char TryToGet(string s, int index)
@@ -29,6 +31,17 @@ public class Problem067
     private int CharToInt(char c)
     {
         return c - '0';
+    }
+
+    private string ArrayToString(int[] nums)
+    {
+        var s = new StringBuilder();
+        int i = nums[nums.Length - 1] == 0 ? nums.Length - 2 : nums.Length - 1;
+        for(; i >= 0; i--)
+        {
+            s.Append(nums[i]);
+        }
+        return s.ToString();
     }
 }
 
