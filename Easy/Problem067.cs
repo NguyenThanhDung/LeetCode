@@ -6,6 +6,7 @@ public class Problem067
     {
         Console.WriteLine(AddBinary("11", "1").Equals("100"));
         Console.WriteLine(AddBinary("1010", "1011").Equals("10101"));
+        Console.WriteLine(AddBinary("1111", "1111").Equals("11110"));
     }
 
     public string AddBinary(string a, string b)
@@ -16,7 +17,7 @@ public class Problem067
         for (int i = a.Length - 1, j = b.Length - 1; i >= 0 || j >= 0; i--, j--, k++)
         {
             int sum = CharToInt(TryToGet(a, i)) + CharToInt(TryToGet(b, j)) + mem;
-            r[k] = sum > 1 ? 0 : sum;
+            r[k] = sum > 1 ? (sum - 2) : sum;
             mem = sum > 1 ? 1 : 0;
         }
         r[k] = mem;
