@@ -11,16 +11,14 @@ public class Problem067
 
     public string AddBinary(string a, string b)
     {
-        int mem = 0;
         var r = new int[Math.Max(a.Length, b.Length) + 1];
         int k = 0;
         for (int i = a.Length - 1, j = b.Length - 1; i >= 0 || j >= 0; i--, j--, k++)
         {
-            int sum = CharToInt(TryToGet(a, i)) + CharToInt(TryToGet(b, j)) + mem;
+            int sum = CharToInt(TryToGet(a, i)) + CharToInt(TryToGet(b, j)) + r[k];
             r[k] = sum > 1 ? (sum - 2) : sum;
-            mem = sum > 1 ? 1 : 0;
+            r[k + 1] = sum > 1 ? 1 : 0;
         }
-        r[k] = mem;
         return ArrayToString(r);
     }
 
@@ -38,7 +36,7 @@ public class Problem067
     {
         var s = new StringBuilder();
         int i = nums[nums.Length - 1] == 0 ? nums.Length - 2 : nums.Length - 1;
-        for(; i >= 0; i--)
+        for (; i >= 0; i--)
         {
             s.Append(nums[i]);
         }
