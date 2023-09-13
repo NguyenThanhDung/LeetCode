@@ -9,29 +9,20 @@ public class Problem1402
 
     public int MaxSatisfaction(int[] satisfaction)
     {
-        List<int> sortedSatisfaction = satisfaction.ToList();
-        sortedSatisfaction.Sort();
+        Array.Sort(satisfaction);
 
         int maxSatisfaction = 0;
-        while (sortedSatisfaction.Count > 0)
+        int sum = 0;
+        int currentSum = 0;
+        for(int i = satisfaction.Length - 1; i >= 0; i--)
         {
-            int currentSatisfaction = CalculateSatisfaction(sortedSatisfaction);
-            if (maxSatisfaction < currentSatisfaction)
+            currentSum += satisfaction[i];
+            sum += currentSum;
+            if (maxSatisfaction < sum)
             {
-                maxSatisfaction = currentSatisfaction;
+                maxSatisfaction = sum;
             }
-            sortedSatisfaction.RemoveAt(0);
         }
         return maxSatisfaction;
-    }
-
-    private int CalculateSatisfaction(List<int> satisfaction)
-    {
-        int sum = 0;
-        for (int i = 0; i < satisfaction.Count; i++)
-        {
-            sum += (i + 1) * satisfaction.ElementAt(i);
-        }
-        return sum;
     }
 }
