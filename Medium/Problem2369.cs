@@ -15,9 +15,7 @@ public class Problem2369
             return true;
         if (nums.Length == 1)
             return false;
-        int[] sub = new int[2];
-        Array.Copy(nums, sub, sub.Length);
-        if (IsSubArrayValid(sub))
+        if (IsSubArrayValid(nums, 2))
         {
             int[] remaining = new int[nums.Length - 2];
             Array.Copy(nums, 2, remaining, 0, remaining.Length);
@@ -29,9 +27,7 @@ public class Problem2369
             {
                 if (nums.Length == 2)
                     return false;
-                sub = new int[3];
-                Array.Copy(nums, sub, sub.Length);
-                if (IsSubArrayValid(sub))
+                if (IsSubArrayValid(nums, 3))
                 {
                     remaining = new int[nums.Length - 3];
                     Array.Copy(nums, 3, remaining, 0, remaining.Length);
@@ -47,9 +43,7 @@ public class Problem2369
         {
             if (nums.Length == 2)
                 return false;
-            sub = new int[3];
-            Array.Copy(nums, sub, sub.Length);
-            if (IsSubArrayValid(sub))
+            if (IsSubArrayValid(nums, 3))
             {
                 int[] remaining = new int[nums.Length - 3];
                 Array.Copy(nums, 3, remaining, 0, remaining.Length);
@@ -62,18 +56,20 @@ public class Problem2369
         }
     }
 
-    public bool IsSubArrayValid(int[] array)
+    public bool IsSubArrayValid(int[] array, int subArrayLength)
     {
-        if (array.Length == 2)
+        int[] subArray = new int[subArrayLength];
+        Array.Copy(array, subArray, subArrayLength);
+        if (subArray.Length == 2)
         {
-            return array[0] == array[1];
+            return subArray[0] == subArray[1];
         }
-        else if (array.Length == 3)
+        else if (subArray.Length == 3)
         {
-            if (array[0] == array[1] && array[0] == array[2])
+            if (subArray[0] == subArray[1] && subArray[0] == subArray[2])
                 return true;
             else
-                return (array[0] + 1) == array[1] && (array[1] + 1) == array[2];
+                return (subArray[0] + 1) == subArray[1] && (subArray[1] + 1) == subArray[2];
         }
         else
         {
