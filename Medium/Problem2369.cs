@@ -6,6 +6,7 @@ public class Problem2369
     {
         Console.WriteLine(ValidPartition(new int[] { 4, 4, 4, 5, 6 }) == true);
         Console.WriteLine(ValidPartition(new int[] { 1, 1, 1, 2 }) == false);
+        Console.WriteLine(ValidPartition(new int[] { 803201, 803201, 803201, 803201, 803202, 803203 }) == true);
     }
 
     public bool ValidPartition(int[] nums)
@@ -20,7 +21,27 @@ public class Problem2369
         {
             int[] remaining = new int[nums.Length - 2];
             Array.Copy(nums, 2, remaining, 0, remaining.Length);
-            return ValidPartition(remaining);
+            if (ValidPartition(remaining))
+            {
+                return true;
+            }
+            else
+            {
+                if (nums.Length == 2)
+                    return false;
+                sub = new int[3];
+                Array.Copy(nums, sub, sub.Length);
+                if (IsSubArrayValid(sub))
+                {
+                    remaining = new int[nums.Length - 3];
+                    Array.Copy(nums, 3, remaining, 0, remaining.Length);
+                    return ValidPartition(remaining);
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
         else
         {
