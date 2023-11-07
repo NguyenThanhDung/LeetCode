@@ -17,26 +17,16 @@ public class Problem2369
             return false;
         if (IsSubArrayValid(nums, 2))
         {
-            int[] remaining = new int[nums.Length - 2];
-            Array.Copy(nums, 2, remaining, 0, remaining.Length);
-            if (ValidPartition(remaining))
-            {
+            if (ValidPartition(GetRemainingArray(nums, 2)))
                 return true;
-            }
             else
             {
                 if (nums.Length == 2)
                     return false;
                 if (IsSubArrayValid(nums, 3))
-                {
-                    remaining = new int[nums.Length - 3];
-                    Array.Copy(nums, 3, remaining, 0, remaining.Length);
-                    return ValidPartition(remaining);
-                }
+                    return ValidPartition(GetRemainingArray(nums, 3));
                 else
-                {
                     return false;
-                }
             }
         }
         else
@@ -44,19 +34,13 @@ public class Problem2369
             if (nums.Length == 2)
                 return false;
             if (IsSubArrayValid(nums, 3))
-            {
-                int[] remaining = new int[nums.Length - 3];
-                Array.Copy(nums, 3, remaining, 0, remaining.Length);
-                return ValidPartition(remaining);
-            }
+                return ValidPartition(GetRemainingArray(nums, 3));
             else
-            {
                 return false;
-            }
         }
     }
 
-    public bool IsSubArrayValid(int[] array, int subArrayLength)
+    private bool IsSubArrayValid(int[] array, int subArrayLength)
     {
         int[] subArray = new int[subArrayLength];
         Array.Copy(array, subArray, subArrayLength);
@@ -75,5 +59,14 @@ public class Problem2369
         {
             return false;
         }
+    }
+
+    private int[] GetRemainingArray(int[] array, int offset)
+    {
+        if (array.Length < offset)
+            return null;
+        int[] remainingArray = new int[array.Length - offset];
+        Array.Copy(array, offset, remainingArray, 0, remainingArray.Length);
+        return remainingArray;
     }
 }
