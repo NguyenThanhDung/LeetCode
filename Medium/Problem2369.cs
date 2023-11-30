@@ -11,20 +11,25 @@ public class Problem2369
 
     public bool ValidPartition(int[] nums)
     {
-        if (nums.Length == 0)
+        return ValidPartitionRecursive(nums, 0);
+    }
+
+    private bool ValidPartitionRecursive(int[] nums, int currentIndex)
+    {
+        if ((nums.Length - currentIndex) == 0)
             return true;
-        if (nums.Length == 1)
+        if ((nums.Length - currentIndex) == 1)
             return false;
-        if (IsSubArrayValid(nums, 2))
+        if (IsSubArrayValid(nums, currentIndex, 2))
         {
-            if (ValidPartition(GetRemainingArray(nums, 2)))
+            if (ValidPartitionRecursive(nums, currentIndex + 2))
                 return true;
             else
             {
                 if (nums.Length == 2)
                     return false;
-                if (IsSubArrayValid(nums, 3))
-                    return ValidPartition(GetRemainingArray(nums, 3));
+                if (IsSubArrayValid(nums, currentIndex, 3))
+                    return ValidPartitionRecursive(nums, currentIndex + 3);
                 else
                     return false;
             }
@@ -33,40 +38,31 @@ public class Problem2369
         {
             if (nums.Length == 2)
                 return false;
-            if (IsSubArrayValid(nums, 3))
-                return ValidPartition(GetRemainingArray(nums, 3));
+            if (IsSubArrayValid(nums, currentIndex, 3))
+                return ValidPartitionRecursive(nums, currentIndex + 3);
             else
                 return false;
         }
     }
 
-    private bool IsSubArrayValid(int[] array, int subArrayLength)
+    private bool IsSubArrayValid(int[] array, int currentIndex, int subArrayLength)
     {
-        if(array.Length < subArrayLength)
+        if ((array.Length - currentIndex) < subArrayLength)
             return false;
         if (subArrayLength == 2)
         {
-            return array[0] == array[1];
+            return array[currentIndex] == array[currentIndex + 1];
         }
         else if (subArrayLength == 3)
         {
-            if (array[0] == array[1] && array[0] == array[2])
+            if (array[currentIndex] == array[currentIndex + 1] && array[currentIndex] == array[currentIndex + 2])
                 return true;
             else
-                return (array[0] + 1) == array[1] && (array[1] + 1) == array[2];
+                return (array[currentIndex] + 1) == array[currentIndex + 1] && (array[currentIndex + 1] + 1) == array[currentIndex + 2];
         }
         else
         {
             return false;
         }
-    }
-
-    private int[] GetRemainingArray(int[] array, int offset)
-    {
-        if (array.Length < offset)
-            return null;
-        int[] remainingArray = new int[array.Length - offset];
-        Array.Copy(array, offset, remainingArray, 0, remainingArray.Length);
-        return remainingArray;
     }
 }
