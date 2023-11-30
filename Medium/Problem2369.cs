@@ -42,18 +42,18 @@ public class Problem2369
 
     private bool IsSubArrayValid(int[] array, int subArrayLength)
     {
-        int[] subArray = new int[subArrayLength];
-        Array.Copy(array, subArray, subArrayLength);
-        if (subArray.Length == 2)
+        if(array.Length < subArrayLength)
+            return false;
+        if (subArrayLength == 2)
         {
-            return subArray[0] == subArray[1];
+            return array[0] == array[1];
         }
-        else if (subArray.Length == 3)
+        else if (subArrayLength == 3)
         {
-            if (subArray[0] == subArray[1] && subArray[0] == subArray[2])
+            if (array[0] == array[1] && array[0] == array[2])
                 return true;
             else
-                return (subArray[0] + 1) == subArray[1] && (subArray[1] + 1) == subArray[2];
+                return (array[0] + 1) == array[1] && (array[1] + 1) == array[2];
         }
         else
         {
