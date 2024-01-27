@@ -12,6 +12,19 @@ public class Problem530
 
     public int getMinimumDifference(TreeNode root)
     {
-        return 0;
+        if (root == null)
+            return int.MaxValue;
+        int minDifference = int.MaxValue;
+        if (root.left != null)
+        {
+            minDifference = getMinimumDifference(root.left);
+            minDifference = int.Min(root.val - root.left.val, minDifference);
+        }
+        if (root.right != null)
+        {
+            minDifference = getMinimumDifference(root.right);
+            minDifference = int.Min(root.right.val - root.val, minDifference);
+        }
+        return minDifference;
     }
 }
