@@ -13,17 +13,21 @@ public class Problem530
     public int getMinimumDifference(TreeNode root)
     {
         if (root == null)
-            return int.MaxValue;
-        int minDifference = int.MaxValue;
+            return 100000;
+        int minDifference = 100000;
         if (root.left != null)
         {
             minDifference = getMinimumDifference(root.left);
-            minDifference = int.Min(root.val - root.left.val, minDifference);
+            int leftDifference = root.val - root.left.val;
+            minDifference = leftDifference < minDifference ? leftDifference : minDifference;
         }
         if (root.right != null)
         {
-            minDifference = int.Min(getMinimumDifference(root.right), minDifference);
-            minDifference = int.Min(root.right.val - root.val, minDifference);
+            int rightDifference = getMinimumDifference(root.right);
+            minDifference = rightDifference < minDifference ? rightDifference : minDifference;
+
+            rightDifference = root.right.val - root.val;
+            minDifference = rightDifference < minDifference ? rightDifference : minDifference;
         }
         return minDifference;
     }
