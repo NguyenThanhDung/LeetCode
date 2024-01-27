@@ -22,7 +22,7 @@ public class Problem530
         }
         if (root.right != null)
         {
-            minDifference = getMinimumDifference(root.right);
+            minDifference = int.Min(getMinimumDifference(root.right), minDifference);
             minDifference = int.Min(root.right.val - root.val, minDifference);
         }
         return minDifference;
