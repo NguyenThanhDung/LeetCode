@@ -6,16 +6,16 @@ public class Problem530
     public Problem530()
     {
         Tree tree = new Tree(new int?[] { 4, 2, 6, 1, 3 });
-        Console.WriteLine(getMinimumDifference(tree.Root) == 1);
+        Console.WriteLine(GetMinimumDifference(tree.Root) == 1);
 
         tree = new Tree(new int?[] { 1, 0, 48, null, null, 12, 49 });
-        Console.WriteLine(getMinimumDifference(tree.Root) == 1);
+        Console.WriteLine(GetMinimumDifference(tree.Root) == 1);
 
         tree = new Tree(new int?[] { 236, 104, 701, null, 227, null, 911 });
-        Console.WriteLine(getMinimumDifference(tree.Root) == 9);
+        Console.WriteLine(GetMinimumDifference(tree.Root) == 9);
     }
 
-    public int getMinimumDifference(TreeNode root)
+    public int GetMinimumDifference(TreeNode root)
     {
         (int, TreeNode) info = GetMinimumDifferenceRecursively(root, Int32.MaxValue, null);
         return info.Item1;
