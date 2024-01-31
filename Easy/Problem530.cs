@@ -17,17 +17,19 @@ public class Problem530
 
     public int getMinimumDifference(TreeNode root)
     {
-        return GetMinimumDifferenceRecursively(root, Int32.MaxValue, null);
+        (int, TreeNode) info = GetMinimumDifferenceRecursively(root, Int32.MaxValue, null);
+        return info.Item1;
     }
 
-    private int GetMinimumDifferenceRecursively(TreeNode node, int minDifference, TreeNode previousNode)
+    private (int minDifference, TreeNode previousNode) GetMinimumDifferenceRecursively(TreeNode node, int minDifference, TreeNode previousNode)
     {
         if (node == null)
-            return minDifference;
+            return (minDifference, previousNode);
 
-        int leftMinDifference = GetMinimumDifferenceRecursively(node.left, minDifference, previousNode);
-        if (leftMinDifference < minDifference)
-            minDifference = leftMinDifference;
+        (int, TreeNode) leftBranchInfo = GetMinimumDifferenceRecursively(node.left, minDifference, previousNode);
+        if (leftBranchInfo.Item1 < minDifference)
+            minDifference = leftBranchInfo.Item1;
+        previousNode = leftBranchInfo.Item2;
 
         if (previousNode != null)
         {
@@ -37,10 +39,11 @@ public class Problem530
         }
         previousNode = node;
 
-        int rightMinDifference = GetMinimumDifferenceRecursively(node.right, minDifference, previousNode);
-        if (rightMinDifference < minDifference)
-            minDifference = rightMinDifference;
+        (int, TreeNode) rightBranchInfo = GetMinimumDifferenceRecursively(node.right, minDifference, previousNode);
+        if (rightBranchInfo.Item1 < minDifference)
+            minDifference = rightBranchInfo.Item1;
+        previousNode = rightBranchInfo.Item2;
 
-        return minDifference;
+        return (minDifference, previousNode);
     }
 }
