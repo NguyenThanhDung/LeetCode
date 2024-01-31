@@ -1,4 +1,6 @@
 // https://leetcode.com/problems/minimum-absolute-difference-in-bst/description/
+using System.Numerics;
+
 public class Problem530
 {
     public Problem530()
@@ -13,34 +15,32 @@ public class Problem530
         Console.WriteLine(getMinimumDifference(tree.Root) == 9);
     }
 
-    const int MIN_VALUE = 0;
-    const int MAX_VALUE = 100000;
-
     public int getMinimumDifference(TreeNode root)
     {
-        (int, int, int) info = GetMinimumDifferenceRecursively(root);
-        return info.Item1;
+        return GetMinimumDifferenceRecursively(root, Int32.MaxValue, null);
     }
 
-    private (int minDifference, int minValue, int maxValue) GetMinimumDifferenceRecursively(TreeNode node)
+    private int GetMinimumDifferenceRecursively(TreeNode node, int minDifference, TreeNode previousNode)
     {
         if (node == null)
-            return (MAX_VALUE, MAX_VALUE, MIN_VALUE);
-        (int, int, int) leftInfo = GetMinimumDifferenceRecursively(node.left);
-        (int, int, int) rightInfo = GetMinimumDifferenceRecursively(node.left);
-        int minDifference = Min(leftInfo.Item1, rightInfo.Item1, node.val - leftInfo.Item3, rightInfo.Item2 - node.val);
-        return (minDifference, leftInfo.Item2, rightInfo.Item3);
-    }
+            return minDifference;
 
-    private int Min(int leftMinDifference, int rightMinDifference, int leftMaxValue, int rightMinValue)
-    {
-        int min = leftMinDifference;
-        if (rightMinDifference < min)
-            min = rightMinDifference;
-        if (leftMaxValue < min)
-            min = leftMaxValue;
-        if (rightMinValue < min)
-            min = rightMinValue;
-        return min;
+        int leftMinDifference = GetMinimumDifferenceRecursively(node.left, minDifference, previousNode);
+        if (leftMinDifference < minDifference)
+            minDifference = leftMinDifference;
+
+        if (previousNode != null)
+        {
+            int currentDifference = node.val - previousNode.val;
+            if (currentDifference < minDifference)
+                minDifference = currentDifference;
+        }
+        previousNode = node;
+
+        int rightMinDifference = GetMinimumDifferenceRecursively(node.right, minDifference, previousNode);
+        if (rightMinDifference < minDifference)
+            minDifference = rightMinDifference;
+
+        return minDifference;
     }
 }
