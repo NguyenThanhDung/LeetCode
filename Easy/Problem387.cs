@@ -10,6 +10,20 @@ public class Problem387
 
     public int FirstUniqChar(string s)
     {
-        return -2;
+        int result = int.MaxValue;
+
+        for(char c = 'a'; c <= 'z'; c++)
+        {
+            int firstIndex = s.IndexOf(c);
+            if(firstIndex != -1 && s.LastIndexOf(c) == firstIndex)
+            {
+                if(firstIndex < result)
+                {
+                    result = firstIndex;
+                }
+            }
+        }
+
+        return result == int.MaxValue ? -1 : result;
     }
 }
