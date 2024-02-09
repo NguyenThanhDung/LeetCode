@@ -26,6 +26,8 @@ public class Problem463
         {
             for (int j = 0; j < grid[i].Length; j++)
             {
+                if (grid[i][j] == 0)
+                    continue;
                 if (i == 0 || grid[i - 1][j] == 0)
                     emptyEdges++;
                 if (i == grid.Length - 1 || grid[i + 1][j] == 0)
