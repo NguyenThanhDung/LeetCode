@@ -20,25 +20,23 @@ public class Problem463
 
     public int IslandPerimeter(int[][] grid)
     {
-        int emptyEdges = 0;
+        int perimeter = 0;
 
         for (int i = 0; i < grid.Length; i++)
         {
             for (int j = 0; j < grid[i].Length; j++)
             {
-                if (grid[i][j] == 0)
-                    continue;
-                if (i == 0 || grid[i - 1][j] == 0)
-                    emptyEdges++;
-                if (i == grid.Length - 1 || grid[i + 1][j] == 0)
-                    emptyEdges++;
-                if (j == 0 || grid[i][j - 1] == 0)
-                    emptyEdges++;
-                if (j == grid[i].Length - 1 || grid[i][j + 1] == 0)
-                    emptyEdges++;
+                if (grid[i][j] == 1)
+                {
+                    perimeter += 4;
+                    if (i > 0 && grid[i - 1][j] == 1)
+                        perimeter -= 2;
+                    if (j > 0 && grid[i][j - 1] == 1)
+                        perimeter -= 2;
+                }
             }
         }
 
-        return emptyEdges;
+        return perimeter;
     }
 }
