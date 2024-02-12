@@ -9,84 +9,17 @@ public class Problem2369
         Console.WriteLine(ValidPartition(new int[] { 803201, 803201, 803201, 803201, 803202, 803203 }) == true);
     }
 
-    enum ValidationStatus
-    {
-        NotCheck = 0,
-        Valid,
-        Invalid
-    }
-
     public bool ValidPartition(int[] nums)
     {
-        ValidationStatus[,] validation = new ValidationStatus[nums.Length, 2];
-        return ValidPartitionRecursive(nums, 0, validation);
-    }
-
-    private bool ValidPartitionRecursive(int[] nums, int currentIndex, ValidationStatus[,] validation)
-    {
-        if ((nums.Length - currentIndex) == 0)
-            return true;
-        if ((nums.Length - currentIndex) == 1)
-            return false;
-        if (IsSubArrayValid(nums, currentIndex, 2, validation))
+        bool[] validations = new bool[nums.Length + 1];
+        validations[0] = true;
+        validations[2] = nums[1] == nums[0];
+        for (int i = 3; i <= nums.Length; i++)
         {
-            validation[currentIndex, 0] = ValidationStatus.Valid;
-            if (ValidPartitionRecursive(nums, currentIndex + 2, validation))
-                return true;
-            else
-            {
-                if (nums.Length == 2)
-                    return false;
-                if (IsSubArrayValid(nums, currentIndex, 3, validation))
-                {
-                    validation[currentIndex, 1] = ValidationStatus.Valid;
-                    return ValidPartitionRecursive(nums, currentIndex + 3, validation);
-                }
-                else
-                {
-                    validation[currentIndex, 1] = ValidationStatus.Invalid;
-                    return false;
-                }
-            }
+            validations[i] = (validations[i - 2] && nums[i - 2] == nums[i - 1]) ||
+                (validations[i - 3] && ((nums[i - 3] == nums[i - 2] && nums[i - 2] == nums[i - 1]) ||
+                (nums[i - 3] + 1 == nums[i - 2] && nums[i - 2] + 1 == nums[i - 1])));
         }
-        else
-        {
-            validation[currentIndex, 0] = ValidationStatus.Invalid;
-            if (nums.Length == 2)
-                return false;
-            if (IsSubArrayValid(nums, currentIndex, 3, validation))
-            {
-                validation[currentIndex, 1] = ValidationStatus.Valid;
-                return ValidPartitionRecursive(nums, currentIndex + 3, validation);
-            }
-            else
-            {
-                validation[currentIndex, 1] = ValidationStatus.Invalid;
-                return false;
-            }
-        }
-    }
-
-    private bool IsSubArrayValid(int[] array, int currentIndex, int subArrayLength, ValidationStatus[,] validation)
-    {
-        if ((array.Length - currentIndex) < subArrayLength)
-        {
-            return false;
-        }
-        if (subArrayLength == 2)
-        {
-            return array[currentIndex] == array[currentIndex + 1];
-        }
-        else if (subArrayLength == 3)
-        {
-            if (array[currentIndex] == array[currentIndex + 1] && array[currentIndex] == array[currentIndex + 2])
-                return true;
-            else
-                return (array[currentIndex] + 1) == array[currentIndex + 1] && (array[currentIndex + 1] + 1) == array[currentIndex + 2];
-        }
-        else
-        {
-            return false;
-        }
+        return validations[nums.Length];
     }
 }
